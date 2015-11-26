@@ -19,7 +19,7 @@
 
     h1 {
       @include channel();
-      padding: 0 $padding + 4px; // padding only on left and right side.
+      padding-left: $padding; 
       margin: 0;
       line-height: 53px;
       color: $primary;
@@ -116,6 +116,7 @@
     .modify {
       display: none;
       position: absolute;
+      right: 8px;
       bottom: 4px;
       a {
         font-size: 12px;
@@ -138,16 +139,11 @@
     }
     .message-body:hover {
       & .modify {
-        display: inline;
-      }
-
-      &:hover .cursor {
-        display: inline-block;
+        display: block;
       }
     }
 
     .pin {
-      display: none !important; // _sweetalert-override.scss is affecting this
       margin-left: 3px;
       color: grey;
       font-size: 12px;
@@ -160,10 +156,6 @@
       &.pinned {
         color: black;
       }
-    }
-
-    .message-body:hover .pin {
-      display: inline !important;
     }
 
     .message-body {
@@ -207,10 +199,10 @@
     }
   }
 
-  &-remove-icon {
-    color: lighten(desaturate($primary, 30%), 60%);
+  &-star {
+    color: lighten(desaturate($primary, 30%), 30%);
     cursor: pointer;
-    margin-left: 40px;
+    margin-left: 10px;
     transition: color 100ms ease-out;
 
     &:hover {
@@ -219,7 +211,7 @@
 
   }
   &-display-info-icon {
-    color: lighten(desaturate($primary, 30%), 60%);
+    color: lighten(desaturate($primary, 30%), 30%);
     cursor: pointer;
     margin-left: 20px;
     transition: color 100ms ease-out;

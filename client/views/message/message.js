@@ -86,13 +86,6 @@ Message = BlazeComponent.extendComponent({
     }
   },
 
-  isPinned: function () {
-    var pinnedMessageIds = currentChannel().pinnedMessageIds;
-    return pinnedMessageIds && pinnedMessageIds.indexOf(
-        this.currentData()._id
-    ) !== -1;
-  },
-
   events: function () {
     return [
       {
@@ -126,7 +119,7 @@ Message = BlazeComponent.extendComponent({
             if (position) {
               var width = position.left;
               self.$('.modify').css({
-                left: width + 8
+                right: width + 8
               });
             }
           }
@@ -173,18 +166,6 @@ Message = BlazeComponent.extendComponent({
 
             }
           });
-        },
-        'mouseover .message-body': function(event) {
-          var self = this;
-          if (self.currentData().userId === Meteor.userId()) {
-            var position = self.$('.message .cursor').position();
-            if (position) {
-              var width = position.left;
-              self.$('.modify').css({
-                left: width + 8
-              });
-            }
-          }
         },
 
         'click .delete': function (event) {

@@ -1,6 +1,6 @@
 LeftSidebar = BlazeComponent.extendComponent({
   channels: function () {
-    return Channels.find( { teamId: currentTeamId(), direct: {$ne: true} } );
+    return Meteor.user().profile.channels;
   },
   allUsersExceptMe: function () {
     // TODO: add limit, autoscale to sidebar height
@@ -11,9 +11,6 @@ LeftSidebar = BlazeComponent.extendComponent({
     //return Channels.find( { teamId: currentTeamId(), direct: true } );
   },
   activeChannelClass: function () {
-    if(isDirectChannel()) {
-      return nameOfDirectChannel() === this.currentData().username ? 'active' : '';
-    }
     return currentChannelId() === this.currentData()._id ? 'active' : '';
   },
   directChannelName: function() {
@@ -51,3 +48,10 @@ LeftSidebar = BlazeComponent.extendComponent({
     ];
   }
 }).register('leftSidebar');
+
+Template.leftSidebar.onCreate(function() {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('channels');
+  });
+})

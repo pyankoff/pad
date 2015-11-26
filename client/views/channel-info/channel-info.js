@@ -31,9 +31,6 @@ ChannelInfo = BlazeComponent.extendComponent({
     self.$channelContent.addClass('channel-content-full');
     self.$channelFooter.addClass('channel-footer-full');
   },
-  creatorUsername : function() {
-    return currentChannel().createdBy ? Meteor.users.findOne(currentChannel().createdBy).username : '';
-  },
   dateCreated: function () {
     return moment(currentChannel().timestamp).format('MMMM Do YYYY');
   },

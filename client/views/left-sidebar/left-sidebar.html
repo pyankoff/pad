@@ -2,33 +2,19 @@
   <aside class="left-sidebar">
     <div class="team">
       <span class="left-sidebar-title">
-        {{#with currentTeam}}
-          <a href="/">{{name}}</a>
-        {{else}}
-          Team Not Found
-        {{/with}}
+          Encyclopad
       </span>
     </div>
-    {{#if currentTeam}}
-      <div class="left-sidebar-channels aside-section">
-        {{> channelForm}}
-        <ul>
-          {{#each channels}}
-          <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}">{{channelName}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
-      <div class="aside-section">
-        <label for="username">Direct Messages</label>
-        <ul>
-          {{#each teamUsers}}
-            <li class="{{activeChannelClass}}">
-              <a class="open-direct-channel" href="{{pathFor 'channel' team=currentTeam.slug channel=directChannelName}}"><b class="user-circle-{{online}}">&#8226; </b>{{username}}</a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    {{/if}}
+
+    <div class="left-sidebar-channels aside-section">
+      {{> channelForm}}
+      <ul>
+        {{#each channels}}
+        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+
     <div class="left-sidebar-user-dropdown hidden">
       <div class="header-item">
         <hr/>
