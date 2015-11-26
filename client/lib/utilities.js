@@ -5,7 +5,7 @@ currentRouteId = function () {
 currentChannel = function () {
   var search = currentChannelSlug();
   var channel = Channels.findOne({ $or: [{ _id: search }, { slug: search }] });
-  
+
   return channel;
 };
 

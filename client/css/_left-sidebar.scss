@@ -7,6 +7,10 @@
   padding: $padding;
   box-sizing: border-box;
   z-index: 2;
+  label {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
   &, a {
     color: lighten($primary, 50%);
     text-decoration: none;

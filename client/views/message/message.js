@@ -51,8 +51,8 @@ Message = BlazeComponent.extendComponent({
 
     return Messages.findOne({
       channelId: currentChannelId(),
-      timestamp: {$lt: current.timestamp}
-    }, {sort: {timestamp: -1}, limit:1});
+      createdAt: {$lt: current.createdAt}
+    }, {sort: {createdAt: -1}, limit:1});
   },
 
   isNewAuthor: function() {

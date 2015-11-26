@@ -1,16 +1,7 @@
-Meteor.publishComposite('channel', function(channel) {
-  return {
-    find: function() {
-      return Channels.find({slug: channel});
-    },
-    children: [
-      {
-        find: function(item) {
-          return Messages.find({
-            channelId: item._id
-          });
-        }
-      }
-    ]
+Meteor.publish('channel', function(recipe) {
+  if (recipe === 'general') {
+    return Messages.find({userId: this.userId});
+  } else {
+    return Messages.find({recipe: recipe});
   }
 });

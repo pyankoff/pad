@@ -1,8 +1,6 @@
 <template name="channelHeader">
   {{#header class="channel-header"}}
-    <h1 class="channel-title">
-      <input type="text" class="recipe-input" value="{{recipe}}">
-    </h1>
-    <i class="fa fa-star-o channel-star"></i>
+    <input type="text" class="recipe-input" value="{{recipe}}">
+    <i class="fa fa-star{{notStarred}} channel-star"></i>
   {{/header}}
 </template>

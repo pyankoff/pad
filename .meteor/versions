@@ -54,8 +54,6 @@ markdown@1.0.5
 matb33:collection-hooks@0.8.1
 meteor@1.1.10
 meteor-base@1.0.1
-meteorhacks:flow-layout@1.4.2
-meteorhacks:flow-router@1.19.0
 minifiers@1.1.7
 minimongo@1.0.10
 mizzao:timesync@0.3.4

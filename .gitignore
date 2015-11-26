@@ -64,5 +64,4 @@ crashlytics-build.properties
 # sftp configuration file
 sftp-config.json
 
-# used for some fix on windows
-client\\css\\main.scss
+mup.json

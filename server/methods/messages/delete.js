@@ -3,7 +3,7 @@ Meteor.methods({
 		check(messageId, String);
 
 		if (!this.userId) {
-	      	throw new Meteor.Error(401, 'Unauthorized access');
+	    throw new Meteor.Error(401, 'Unauthorized access');
 		}
 
 		if (!Messages.find(messageId).count()) {
@@ -11,9 +11,9 @@ Meteor.methods({
 		}
 
 		if(isOwner('Messages', messageId)) {
-      		Meteor.call('channels.unpinMessage', message.channelId, messageId);
+      Meteor.call('channels.unpinMessage', message.channelId, messageId);
 			Messages.remove(messageId);
-       
+
 		}
 	}
 });

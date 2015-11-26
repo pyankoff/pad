@@ -1,6 +1,26 @@
-.channel-title {
-  input {
-    margin-top: -10px;
+.channel-header {
+  display: block;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  height: $top;
+  left: $sidebar-width;
+  background: white;
+  right: 0px;
+  input.recipe-input {
+    position: absolute;
+    left: 15px;
+    width: calc(100% - 80px);
+    top: 10px;
+    bottom: 10px;
     font-size: 1em;
+  }
+
+  i {
+    margin: 15px;
+    float: right;
+    font-size: 24px;
+    color: #9e9ea6;
+    font-weight: 500;
   }
 }

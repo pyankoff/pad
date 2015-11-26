@@ -7,7 +7,6 @@
     </div>
 
     <div class="left-sidebar-channels aside-section">
-      {{> channelForm}}
       <ul>
         {{#each channels}}
         <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>

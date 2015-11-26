@@ -8,7 +8,7 @@ Template.channel.helpers({
   messages: function () {
     return Messages.find({
       channelId: currentChannelId()
-    });
+    }, {sort: {createdAt: 1}});
   },
   channel: function () {
     return Channels.findOne({
@@ -59,124 +59,7 @@ Template.channel.helpers({
 });
 
 Template.channel.events({
-  'keydown textarea[name=message]': function (event) {
-    if (isEnter(event) && ! event.shiftKey) { // Check if enter was pressed (but without shift).
-      event.preventDefault();
-      var _id = currentRouteId();
-      var value = $('textarea[name=message]').val();
-      // Markdown requires double spaces at the end of the line to force line-breaks.
-      value = value.replace(/([^\n])\n/g, "$1  \n");
 
-      // Prevent accepting empty message
-      if ($.trim(value) === "") return;
-
-      $('textarea[name=message]').val(''); // Clear the textarea.
-      Messages.insert({
-        // TODO: should be checked server side if the user is allowed to do this
-        channelId: currentChannelId(),
-        message: value
-      });
-      // Restore the autosize value.
-      $('textarea[name=message]').css({
-        height: 37
-      });
-      scrollDown();
-
-      Session.set('typingInChannel', undefined);
-    } else {
-      Session.set('typingInChannel', currentChannelId());
-      this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
-      this.clearTypingTimeoutId = setTimeout(function () {
-        Session.set('typingInChannel', undefined);
-      }, 5000);
-    }
-  },
-  'keyup textarea[name=message]': function (event) {
-    $("textarea").textcomplete([ {
-      match: /\B:([\-+\w]*)$/,
-      search: function (term, callback) {
-        var results = [];
-        var results2 = [];
-        var results3 = [];
-        $.each(emojiStrategy,function(shortname,data) {
-          if(shortname.indexOf(term) > -1) { results.push(shortname); }
-          else {
-            if((data.aliases !== null) && (data.aliases.indexOf(term) > -1)) {
-              results2.push(shortname);
-            }
-            else if((data.keywords !== null) && (data.keywords.indexOf(term) > -1)) {
-              results3.push(shortname);
-            }
-          }
-        });
-
-        if(term.length >= 3) {
-          results.sort(function(a,b) { return (a.length > b.length); });
-          results2.sort(function(a,b) { return (a.length > b.length); });
-          results3.sort();
-        }
-        var newResults = results.concat(results2).concat(results3);
-
-        callback(newResults);
-      },
-      template: function (shortname) {
-        return '<img class="emojione" src="//cdn.jsdelivr.net/emojione/assets/png/'+emojiStrategy[shortname].unicode+'.png"> :'+shortname+':';
-      },
-      replace: function (shortname) {
-        return ':'+shortname+': ';
-      },
-      index: 1,
-      maxCount: 10,
-    }
-    ]);
-
-    $('.dropdown-menu').prependTo('.message-tab-content');
-    $('.dropdown-menu').css({
-      "position": "static",
-    });
-  },
-
-  'keydown textarea[name=channel-purpose]': function (event) {
-    if (isEnter(event) && ! event.shiftKey) {
-      event.preventDefault();
-      var textarea = $('textarea[name=channel-purpose]');
-      // Markdown requires double spaces at the end of the line to force line-breaks.
-      value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
-      // Prevent accepting empty channel purpose
-      if ($.trim(value) === "") return;
-
-      Meteor.call('channels.updatePurpose', currentChannelId(), value, function (error, result) {
-        if (result) {
-          self.$(".channel-purpose-form").toggleClass("hidden");
-        } else if (error) {
-          switch(error.error) {
-            case 401: // Not authorized
-            displayUnauthorizedError();
-            break;
-            case 404: // No channel found
-            swal({
-              title: 'Yikes! Something went wrong',
-              text: "We can't find the channel",
-              type: 'error'
-            });
-            break;
-          }
-        }
-      });
-    }
-  },
-
-  'keydown input[name=channel-topic]': function (event) {
-
-    if (isEnter(event)) {
-      var content = $('input[name=channel-topic]').value;
-      Meteor.call('channels.updateTopic', currentChannelId(), content);
-      // Hide the dropdown.
-      this.$(".channel-dropdown").toggleClass("hidden");
-      this.$(".channel-title").toggleClass("visible");
-    }
-
-  }
 });
 
 

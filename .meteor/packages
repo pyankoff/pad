@@ -11,8 +11,8 @@ momentjs:moment
 fourseven:scss
 copleykj:jquery-autosize
 tmeasday:gravatar
-meteorhacks:flow-layout
-meteorhacks:flow-router
+kadira:blaze-layout
+kadira:flow-router
 peerlibrary:blaze-components
 mizzao:user-status
 todda00:friendly-slugs
