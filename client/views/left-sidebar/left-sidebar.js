@@ -29,7 +29,10 @@ Template.leftSidebar.events({
       }
     });
   },
-
+  'click .left-sidebar-channels>ul>li': function(e) {
+    Session.set('pointsLimit', 20);
+    Session.set('new', false);
+  },
   'click .left-sidebar-user-show-dropdown': function (event) {
     event.preventDefault();
 

@@ -10,7 +10,7 @@
   input.recipe-input {
     position: absolute;
     left: 15px;
-    width: calc(100% - 80px);
+    width: calc(100% - 180px);
     top: 10px;
     bottom: 10px;
     font-size: 1em;
@@ -20,7 +20,18 @@
     margin: 15px;
     float: right;
     font-size: 24px;
-    color: #9e9ea6;
     font-weight: 500;
+  }
+
+  .fa-plus, .fa-pencil {
+    color: lighten(desaturate($primary, 30%), 30%);
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 100ms ease-out;
+
+    &:hover {
+      color: $primary;
+    }
+
   }
 }

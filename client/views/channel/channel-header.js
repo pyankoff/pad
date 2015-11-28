@@ -1,6 +1,10 @@
 Template.channelHeader.helpers({
   recipe: function(){
-    return FlowRouter.getParam('channel');
+    if (!Session.get('new')) {
+      return FlowRouter.getParam('channel');
+    } else {
+      return Session.get('keyword');
+    }
   },
   notStarred: function() {
     var channel = FlowRouter.getParam('channel');
@@ -27,5 +31,10 @@ Template.channelHeader.events({
     Meteor.users.update(Meteor.userId(), {$set:
       {'profile.channels': saved}
     });
+  },
+  'click .fa-plus': function(e) {
+    Session.set('new', true);
+    Session.set('keyword', '');
+    FlowRouter.go('channel', {'channel': Random.id()});
   }
 });

@@ -16,6 +16,10 @@ Template.pointInput.events({
         message: value
       });
 
+      if (Session.get('new')) {
+        processWords();
+      }
+
       $('textarea[name=message]').css({
         height: 37
       });
@@ -67,3 +71,21 @@ Template.pointInput.events({
     });
   }
 });
+
+function processWords() {
+  var words = [];
+  Messages.find().forEach(function(msg){
+    words = words.concat(msg.message.toLowerCase().split(' '));
+  });
+  var stopWords = ['a', 'the', 'in', 'on', 'when', 'where', 'some', 'there',
+      'is', 'did', 'he', 'she', 'have'];
+  words = _.difference(words, stopWords);
+  var keyword = _.chain(words).countBy().pairs().max(_.last).head().value();
+
+  Messages.find().forEach(function(msg){
+    Messages.update(msg._id, {
+      $set: {recipe: [currentChannelSlug(), keyword]}
+    })
+  });
+  Session.set('keyword', keyword);
+}

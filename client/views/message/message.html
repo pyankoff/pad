@@ -20,9 +20,6 @@
           {{/if}}
         </span>
         <div class="message">{{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
-          {{#if modifiedTimestamp}}
-            <span class="info-text">&nbsp;(edited)</span>
-          {{/if}}
           <span class="cursor"></span>
           {{#if messageUrls}}
             {{#each messageUrls}}

@@ -2,11 +2,15 @@
     {{#unless currentChannel.direct}}
       {{> channelInfo}}
     {{/unless}}
-    {{> channelDropdown}}
 
     {{> channelHeader}}
 
     {{#content class="channel-content"}}
+      {{#if morePoints}}
+          <div id="showMoreResults" style="margin-left: 25px;">
+              <span class="loading">Loading...</span>
+          </div>
+      {{/if}}
       <ul class="channel-content-scroll">
         {{#each messages}}
           {{> message this}}
