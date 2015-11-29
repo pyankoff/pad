@@ -1,5 +1,5 @@
 Meteor.methods({
-  'channels.add': function (teamId, channelName, options) {
+  'notes.add': function (teamId, noteName, options) {
     check(teamId, String);
     check(options, Match.Optional({ direct: Boolean, allowedUsers: [String] }));
 
@@ -13,10 +13,10 @@ Meteor.methods({
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
-    // Insert direct channel
+    // Insert direct note
     if (options && options.direct) {
-      // Create the channel name like userId-userId
-      if (!Channels.find({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } }).count()) {
+      // Create the note name like userId-userId
+      if (!Notes.find({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } }).count()) {
         var directChannel = {
           direct: true,
           teamId: teamId,
@@ -24,23 +24,23 @@ Meteor.methods({
           name: null
         };
 
-        return Channels.insert(directChannel);
+        return Notes.insert(directChannel);
       } else {
         return 1;
       }
     }
 
-    check(channelName, String);
+    check(noteName, String);
 
     // Get rid of extra spaces in names, lower-case it
     // (like Slack does), and trim it
-    channelName = channelName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
+    noteName = noteName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
 
-    // Insert the new channel
-    if (!Channels.findOne({ teamId: teamId, name: channelName })) {
-      return Channels.insert({
+    // Insert the new note
+    if (!Notes.findOne({ teamId: teamId, name: noteName })) {
+      return Notes.insert({
         teamId: teamId,
-        name: channelName
+        name: noteName
       });
     } else {
       throw new Meteor.Error(422, 'Channel name exists');

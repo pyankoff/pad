@@ -1,7 +1,7 @@
 Meteor.methods({
-  'channels.unpinMessage': function(channelId, messageId) {
+  'notes.unpinMessage': function(noteId, messageId) {
 
-    check(channelId, String);
+    check(noteId, String);
     check(messageId, String);
     
     // Check user authenticated
@@ -9,19 +9,19 @@ Meteor.methods({
       throw new Meteor.Error(401, 'Unauthorized access');
     }
 
-    // Check channel exists
-    if (!Channels.find(channelId).count()) {
+    // Check note exists
+    if (!Notes.find(noteId).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
     // Check message exists
-    if (!Messages.find(messageId).count()) {
+    if (!Points.find(messageId).count()) {
       throw new Meteor.Error(404, 'Message does not exist');
     }
 
-    // Using Channels.direct to get around an issue with Collection Hooks
+    // Using Notes.direct to get around an issue with Collection Hooks
     // not allowing updates without a $set
-    return Channels.direct.update(channelId,
+    return Notes.direct.update(noteId,
       {
         $pull: {
           pinnedMessageIds: messageId

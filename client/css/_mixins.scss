@@ -1,4 +1,4 @@
-@mixin channel() {
+@mixin note() {
   &:before {
     content: '#';
     color: lighten(desaturate($primary, 30%), 30%);

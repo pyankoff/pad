@@ -26,10 +26,24 @@
   li a:before {
     color: lighten($primary, 10%);
   }
+  li {
+    i {
+      display: none;
+      float: right;
+      padding-top: 5px;
+      cursor: pointer;
+    }
+    &:hover {
+      i {
+        display: block;
+      }
+    }
+  }
   .active {
     background: $accent;
     margin-left: -$padding;
     margin-right: -$padding;
+    padding-right: $padding;
     padding-left: $padding;
     a {
       color: white;
@@ -75,7 +89,7 @@
     top: 2px;
   }
 
-  &-channels {
+  &-notes {
     li a:before {
       content: '#';
       margin-right: 3px;

@@ -1,0 +1,42 @@
+<template name="note">
+    {{> noteHeader}}
+
+    {{#content class="note-content"}}
+      <ul class="note-content-scroll">
+        {{#each points}}
+          {{> message this}}
+        {{/each}}
+      </ul>
+    {{/content}}
+    {{#footer class="note-footer"}}
+      {{> messageTab}}
+      {{> pointInput}}
+    {{/footer}}
+
+</template>
+
+
+<template name="messageTab">
+  <section class="message-tab-container">
+    <div class="message-tab-content"></div>
+  </section>
+</template>
+
+<template name="noteDropdown">
+  <div class="note-dropdown hidden">
+    <ul>
+      <ul>
+        <li><a href="#" class="note-purpose">Set note purpose</a>
+          <div class="note-purpose-form hidden">
+            <textarea name="note-purpose" class="note-purpose-input" cols="30" rows="1">{{removeTrailingSpaces currentChannel.purpose}}</textarea>
+          </div>
+        </li>
+        <li><a href="#" class="notification-settings">Notification settings</a></li>
+      </ul>
+    </ul>
+    <div class="header-item">
+        <span class="header-item-content">Set note topic</span>
+    </div>
+    <input name="note-topic" class="note-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
+  </div>
+</template>

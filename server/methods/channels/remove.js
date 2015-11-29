@@ -1,18 +1,18 @@
 Meteor.methods({
-  'channels.remove': function (channelId) {
-    check(channelId, String);
+  'notes.remove': function (noteId) {
+    check(noteId, String);
 
-    // XXX TODO - Need to check if the user can remove the channel
+    // XXX TODO - Need to check if the user can remove the note
     if (!this.userId) {
       throw new Meteor.Error(401, 'Unauthorized access');
     }
 
-    // Check channel exists
-    if (!Channels.find(channelId).count()) {
+    // Check note exists
+    if (!Notes.find(noteId).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
     
-    Messages.remove({ channelId: channelId });
-    Channels.remove({ _id: channelId });
+    Points.remove({ noteId: noteId });
+    Notes.remove({ _id: noteId });
   }
 });

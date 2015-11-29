@@ -1,6 +1,6 @@
 Meteor.methods({
 
-  'channels.updateTopic': function (id, topic) {
+  'notes.updateTopic': function (id, topic) {
     check(id, String);
     check(topic, String);
 
@@ -9,16 +9,16 @@ Meteor.methods({
       throw new Meteor.Error(401, 'Unauthorized access');
     }
 
-    // Check channel exists
-    if (!Channels.find(id).count()) {
+    // Check note exists
+    if (!Notes.find(id).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
-    Channels.update(id, {
+    Notes.update(id, {
       $set: {topic: topic}
     });
   },
-  'channels.updatePurpose': function (id, purpose) {
+  'notes.updatePurpose': function (id, purpose) {
     check(id, String);
     check(purpose, String);
     
@@ -27,12 +27,12 @@ Meteor.methods({
       throw new Meteor.Error(401, 'Unauthorized access');
     }
 
-    // Check channel exists
-    if (!Channels.find(id).count()) {
+    // Check note exists
+    if (!Notes.find(id).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
-    return Channels.update(id, {
+    return Notes.update(id, {
       $set: {purpose: purpose}
     });
   }

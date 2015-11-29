@@ -1,4 +1,4 @@
-.channel-header {
+.note-header {
   display: block;
   z-index: 1;
   position: fixed;
@@ -23,7 +23,7 @@
     font-weight: 500;
   }
 
-  .fa-plus, .fa-pencil {
+  .fa-plus, .fa-search {
     color: lighten(desaturate($primary, 30%), 30%);
     cursor: pointer;
     margin-left: 10px;

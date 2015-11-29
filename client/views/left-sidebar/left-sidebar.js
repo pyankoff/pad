@@ -1,21 +1,13 @@
 Template.leftSidebar.helpers({
-  channels: function () {
-    if (Meteor.user()) {
-      return Meteor.user().profile.channels;
-    }
+  favorite: function () {
+    return Meteor.user().profile.favorites;
   },
-  allUsersExceptMe: function () {
-    // TODO: add limit, autoscale to sidebar height
-    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
-  },
-  teamUsers: function() {
-    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
+  recent: function () {
+    return Notes.find({userId: Meteor.userId()},
+            {sort: {createdAt: -1}, limit: 10});
   },
   activeChannelClass: function () {
-    return currentChannelId() === this ? 'active' : '';
-  },
-  directChannelName: function() {
-    return "@" + this.currentData().username;
+    return currentNoteId() === this._id ? 'active' : '';
   }
 });
 
@@ -29,9 +21,15 @@ Template.leftSidebar.events({
       }
     });
   },
-  'click .left-sidebar-channels>ul>li': function(e) {
-    Session.set('pointsLimit', 20);
-    Session.set('new', false);
+  'click .fa-star-o': function(e) {
+    Meteor.users.update(Meteor.userId(), {
+      $addToSet: {'profile.favorites': this._id}
+    });
+  },
+  'click .fa-star': function(e) {
+    Meteor.users.update(Meteor.userId(), {
+      $pull: {'profile.favorites': String(this)}
+    });
   },
   'click .left-sidebar-user-show-dropdown': function (event) {
     event.preventDefault();
@@ -44,6 +42,6 @@ Template.leftSidebar.events({
 Template.leftSidebar.onCreated(function() {
   var self = this;
   self.autorun(function () {
-    self.subscribe('channels');
+    self.subscribe('notes');
   });
 })

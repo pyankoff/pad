@@ -1,4 +1,4 @@
-.channel {
+.note {
 
   &-content {
     padding: 16px $padding*4/3 0 $padding*4/3;
@@ -7,13 +7,8 @@
     overflow-y: auto;
     left: $sidebar-width;
     position: fixed;
-    right: $channel-info-width;
-    margin-right: $padding*4/3-3px;
-
-    &-full{
-      right: 0;
-      transition: margin-right 100ms ease-in-out;
-    }
+    right: $note-info-width;
+    right: 0;
 
     &.home-content{
       margin-left: 0;
@@ -130,12 +125,7 @@
     padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
-    right: $channel-info-width;
-
-    &-full {
-      right: 0;
-      transition: right 100ms ease-in-out;
-    }
+    right: 0;
 
     .message-tab-container {
       box-shadow: 0 1px 4px rgba(64, 54, 63, 0.25);

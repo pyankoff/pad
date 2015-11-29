@@ -49,8 +49,8 @@ Message = BlazeComponent.extendComponent({
     var self = this,
         current = self.currentData();
 
-    return Messages.findOne({
-      channelId: currentChannelId(),
+    return Points.findOne({
+      noteId: currentNoteId(),
       createdAt: {$lt: current.createdAt}
     }, {sort: {createdAt: -1}, limit:1});
   },
@@ -109,7 +109,7 @@ Message = BlazeComponent.extendComponent({
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
 
-            Messages.update(self.currentData()._id, {
+            Points.update(self.currentData()._id, {
               $set: { message: value }
             });
 
@@ -124,54 +124,10 @@ Message = BlazeComponent.extendComponent({
             }
           }
         },
-        'click [data-action="pin-message"]': function (event) {
-          var currentData = this.currentData();
-
-          event.preventDefault();
-
-          Meteor.call('channels.pinMessage',
-                      currentData.channelId,
-                      currentData._id, function (error) {
-            if (error) {
-              swal({
-                title: 'Yikes! Something went wrong',
-                text: error.reason,
-                type: 'error'
-              });
-            } else {
-              App.channelInfo.show();
-              App.channelInfo.pinnedMessages.open();
-            }
-          });
-        },
-        'click [data-action="unpin-message"]': function (event) {
-          var currentData = this.currentData();
-
-          event.preventDefault();
-
-          Meteor.call('channels.unpinMessage',
-                      currentData.channelId,
-                      currentData._id, function (error) {
-            if (error) {
-              swal({
-                title: 'Yikes! Something went wrong',
-                text: error.reason,
-                type: 'error'
-              });
-            } else {
-              swal({
-                title: 'Message has been un-pinned',
-                type: 'success'
-              });
-
-            }
-          });
-        },
-
         'click .delete': function (event) {
           event.preventDefault();
 
-          Meteor.call('messages.delete', this.currentData()._id,
+          Meteor.call('points.delete', this.currentData()._id,
             function (error) {
               if (error) {
                 swal({

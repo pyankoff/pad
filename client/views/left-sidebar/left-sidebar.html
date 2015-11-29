@@ -6,20 +6,26 @@
       </span>
     </div>
 
-    <div class="left-sidebar-channels aside-section">
+    <div class="left-sidebar-notes aside-section">
       <p>FAVORITE</p>
       <ul>
-        {{#each channels}}
-        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>
+        {{#each favorite}}
+        <li class="{{activeChannelClass}}">
+          <i class="fa fa-star"></i>
+          <a href="{{pathFor 'note' note=this}}">Favorite</a>
+        </li>
         {{/each}}
       </ul>
     </div>
 
-    <div class="left-sidebar-channels aside-section">
+    <div class="left-sidebar-notes aside-section">
       <p>RECENT</p>
       <ul>
-        {{#each channels}}
-        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>
+        {{#each recent}}
+        <li class="{{activeChannelClass}}">
+          <i class="fa fa-star-o"></i>
+          <a href="{{pathFor 'note' note=_id}}">{{title}}</a>
+        </li>
         {{/each}}
       </ul>
     </div>

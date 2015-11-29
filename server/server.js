@@ -7,7 +7,7 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = options.profile;
   } else {
     user.profile = {
-      channels: ['general']
+      notes: ['general']
     }
   }
 
