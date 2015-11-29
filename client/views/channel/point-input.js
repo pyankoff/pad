@@ -25,6 +25,17 @@ Template.pointInput.events({
       scrollDown();
 
       Session.set("words", Session.get("words").concat(value.toLowerCase().split(' ')));
+
+      if (!Session.get("insert")) {
+        var wordCount = value.split(' ').length;
+        Meteor.users.update(Meteor.userId(), {
+          $inc: {'profile.wordCount': wordCount}
+        })
+      }
+
+      Session.set('insert', false);
+    } else if (event.keyCode == 86 && event.metaKey) {
+      Session.set("insert", true);
     }
   },
   'keyup textarea[name=message]': function (event) {

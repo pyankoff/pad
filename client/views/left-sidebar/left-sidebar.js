@@ -1,6 +1,6 @@
 Template.leftSidebar.helpers({
   favorite: function () {
-    return Meteor.user().profile.favorites;
+    return Meteor.user() && Meteor.user().profile.favorites;
   },
   recent: function () {
     return Notes.find({userId: Meteor.userId()},
