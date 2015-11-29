@@ -16,7 +16,11 @@ Template.channelHeader.helpers({
 Template.channelHeader.events({
   'keypress input.recipe-input': function (e) {
     if (e.which === 13) {
-      FlowRouter.go('channel', {channel: e.target.value})
+      if (Session.get('new')) {
+        
+      } else {
+        FlowRouter.go('channel', {channel: e.target.value})
+      }
     }
   },
   'click .channel-star': function(e) {

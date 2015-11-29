@@ -7,6 +7,16 @@
     </div>
 
     <div class="left-sidebar-channels aside-section">
+      <p>FAVORITE</p>
+      <ul>
+        {{#each channels}}
+        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="left-sidebar-channels aside-section">
+      <p>RECENT</p>
       <ul>
         {{#each channels}}
         <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' channel=this}}">{{this}}</a></li>
