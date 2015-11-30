@@ -6,7 +6,11 @@
     <p>We couldn't find this page.</p>
     <ul>
       <li><a href="#" onclick="window.history.go(-1);">Go back</a></li>
-      <li><a href="#" class="new-note">New</a></li>
+      {{> newNote}}
     </ul>
   {{/content}}
+</template>
+
+<template name="newNote">
+  <li><a href="#" class="new-note">New note</a></li>
 </template>

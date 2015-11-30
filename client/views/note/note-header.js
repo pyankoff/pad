@@ -12,9 +12,6 @@ Template.noteHeader.events({
       })
     }
   },
-  'click .fa-search': function(e) {
-    console.log('activate search');
-  },
   'click .fa-plus': function(e) {
     var noteId = Notes.insert({
       title: 'new note',
@@ -22,4 +19,12 @@ Template.noteHeader.events({
     });
     FlowRouter.go('note', {'note': noteId});
   }
+});
+
+Template.note.onCreated(function() {
+  var self = this;
+
+  self.autorun(function () {
+    self.subscribe('note', currentNoteId());
+  });
 });

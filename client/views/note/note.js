@@ -43,7 +43,7 @@ Template.note.onCreated(function() {
   self.isNearBottom = new ReactiveVar(false);
 
   self.autorun(function () {
-    self.subscribe('note', currentNoteId(), function () {
+    self.subscribe('notePoints', currentNoteId(), function () {
         scrollDown();
         var words = []
         Points.find().forEach(function(point) {

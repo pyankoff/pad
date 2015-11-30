@@ -1,0 +1,20 @@
+<template name="search">
+    {{#header class="note-header"}}
+      {{> EasySearch.Input index=pointsIndex attributes=inputAttributes}}
+    {{/header}}
+
+    {{#content class="note-content"}}
+      <ul class="note-content-scroll search-results">
+        {{#EasySearch.Each index=pointsIndex }}
+          {{> message this}}
+        {{/EasySearch.Each}}
+      </ul>
+
+      {{> EasySearch.LoadMore index=pointsIndex}}
+
+      {{#EasySearch.IfNoResults index=pointsIndex}}
+        <div class="no-results">No results found!</div>
+        {{> newNote}}
+      {{/EasySearch.IfNoResults}}
+    {{/content}}
+</template>

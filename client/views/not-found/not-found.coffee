@@ -1,4 +1,4 @@
-Template.notFound.events
+Template.newNote.events
   "click .new-note": (event, template) ->
     noteId = Notes.insert {
       title: 'new note',
