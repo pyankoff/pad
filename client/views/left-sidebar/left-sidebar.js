@@ -1,14 +1,22 @@
-Template.leftSidebar.helpers({
-  favorite: function () {
-    return Meteor.user() && Meteor.user().profile.favorites;
+var activeChannelClass = function () {
+  return currentNoteId() === this._id ? 'active' : '';
+}
+
+Template.favoriteNotes.helpers({
+  notes: function () {
+    return Notes.find({_id: {$in: Meteor.user().profile.favorites}});
   },
-  recent: function () {
-    return Notes.find({userId: Meteor.userId()},
+  activeChannelClass: activeChannelClass
+});
+
+Template.recentNotes.helpers({
+  notes: function () {
+    return Notes.find({$and: [
+      {userId: Meteor.userId()},
+      {_id: {$not: {$in: Meteor.user().profile.favorites}}}]},
             {sort: {createdAt: -1}, limit: 10});
   },
-  activeChannelClass: function () {
-    return currentNoteId() === this._id ? 'active' : '';
-  }
+  activeChannelClass: activeChannelClass
 });
 
 Template.leftSidebar.events({
@@ -39,9 +47,16 @@ Template.leftSidebar.events({
   }
 });
 
-Template.leftSidebar.onCreated(function() {
+Template.recentNotes.onCreated(function() {
   var self = this;
   self.autorun(function () {
-    self.subscribe('notes');
+    self.subscribe('recentNotes');
+  });
+});
+
+Template.favoriteNotes.onCreated(function() {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('favoriteNotes', Meteor.user().profile.favorites);
   });
 })

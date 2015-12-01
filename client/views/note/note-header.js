@@ -21,7 +21,7 @@ Template.noteHeader.events({
   }
 });
 
-Template.note.onCreated(function() {
+Template.noteHeader.onCreated(function() {
   var self = this;
 
   self.autorun(function () {

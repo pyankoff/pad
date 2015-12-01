@@ -1,3 +1,33 @@
+.search-header {
+  display: block;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  height: $top;
+  left: $sidebar-width;
+  background: white;
+  right: 0px;
+  input.recipe-input {
+    position: absolute;
+    right: 15px;
+    width: calc(100% - 80px);
+    top: 10px;
+    bottom: 10px;
+    font-size: 1em;
+  }
+
+  i {
+    margin: 15px;
+    float: left;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .fa-search {
+    color: lighten(desaturate($primary, 30%), 30%);
+  }
+}
+
 .search-results .message-body {
   cursor: pointer;
 }
