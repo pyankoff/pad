@@ -15,6 +15,10 @@ Template.pointInput.events({
         message: value
       });
 
+      Notes.update(currentNoteId(), {
+        $set: {updatedAt: new Date()}
+      })
+
       if (currentNote().suggestKeywords) {
         processWords();
       }

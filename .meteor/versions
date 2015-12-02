@@ -18,7 +18,7 @@ callback-hook@1.0.4
 check@1.1.0
 coffeescript@1.0.11
 copleykj:jquery-autosize@1.17.8
-cosmos:browserify@0.5.1
+cosmos:browserify@0.9.2
 dburles:collection-helpers@1.0.4
 ddp@1.2.2
 ddp-client@1.2.1
@@ -45,8 +45,8 @@ http@1.1.1
 id-map@1.0.4
 iframely:oembed@0.0.2
 jquery@1.11.4
-kadira:blaze-layout@2.1.0
-kadira:flow-router@2.7.0
+kadira:blaze-layout@2.3.0
+kadira:flow-router@2.10.0
 kevohagan:sweetalert@0.5.0
 launch-screen@1.0.4
 livedata@1.0.15
@@ -69,6 +69,7 @@ npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ogourment:settings@1.0.1
+okgrow:analytics@1.0.4
 ordered-dict@1.0.4
 peerlibrary:assert@0.2.5
 peerlibrary:base-component@0.14.0

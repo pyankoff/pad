@@ -14,7 +14,7 @@ Template.recentNotes.helpers({
     return Notes.find({$and: [
       {userId: Meteor.userId()},
       {_id: {$not: {$in: Meteor.user().profile.favorites}}}]},
-            {sort: {createdAt: -1}, limit: 10});
+            {sort: {updatedAt: -1}, limit: 10});
   },
   activeChannelClass: activeChannelClass
 });
@@ -57,6 +57,8 @@ Template.recentNotes.onCreated(function() {
 Template.favoriteNotes.onCreated(function() {
   var self = this;
   self.autorun(function () {
-    self.subscribe('favoriteNotes', Meteor.user().profile.favorites);
+    if (Meteor.user()) {
+      self.subscribe('favoriteNotes', Meteor.user().profile.favorites);
+    }
   });
 })

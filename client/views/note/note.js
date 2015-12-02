@@ -45,11 +45,14 @@ Template.note.onCreated(function() {
   self.autorun(function () {
     self.subscribe('notePoints', currentNoteId(), function () {
         scrollDown();
-        var words = []
-        Points.find().forEach(function(point) {
-          words = words.concat(point.message.toLowerCase().split(' '));
-        });
-        Session.set('words', words);
+
+        if (currentNote().suggestKeywords) {
+          var words = []
+          Points.find({noteId: currentNoteId()}).forEach(function(point) {
+            words = words.concat(point.message.toLowerCase().split(' '));
+          });
+          Session.set('words', words);
+        }
     });
   });
 });
@@ -80,6 +83,5 @@ Template.note.onRendered(function() {
 
 Template.note.onDestroyed(function() {
   var self = this;
-  // Prevents memory leaks!
   self.messageObserveHandle && self.messageObserveHandle.stop();
 });
