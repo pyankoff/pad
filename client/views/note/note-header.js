@@ -20,11 +20,3 @@ Template.noteHeader.events({
     FlowRouter.go('note', {'note': noteId});
   }
 });
-
-Template.noteHeader.onCreated(function() {
-  var self = this;
-
-  self.autorun(function () {
-    self.subscribe('note', currentNoteId());
-  });
-});

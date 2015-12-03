@@ -10,10 +10,13 @@
   input.recipe-input {
     position: absolute;
     left: 15px;
-    width: calc(100% - 120px);
+    width: calc(100% - 140px);
     top: 10px;
     bottom: 10px;
     font-size: 1em;
+    border: solid 2px lightgray;
+    border-radius: 4px;
+    padding: 8px;
   }
 
   i {

@@ -2,6 +2,18 @@ var activeChannelClass = function () {
   return currentNoteId() === this._id ? 'active' : '';
 }
 
+Template.leftSidebar.helpers({
+  notesIndex: function(){
+    return NotesIndex;
+  },
+  searching: function() {
+    return Session.get('searching');
+  },
+  inputAttributes: function() {
+    return {class: 'note-search', placeholder: 'Search...'}
+  }
+});
+
 Template.favoriteNotes.helpers({
   notes: function () {
     return Notes.find({_id: {$in: Meteor.user().profile.favorites}});
@@ -44,6 +56,9 @@ Template.leftSidebar.events({
 
     $(".left-sidebar-user-dropdown").toggleClass("hidden");
     $(".left-sidebar-user-show-dropdown").toggleClass("visible");
+  },
+  'focus input': function(e) {
+    Session.set('searching', true);
   }
 });
 
@@ -56,6 +71,7 @@ Template.recentNotes.onCreated(function() {
 
 Template.favoriteNotes.onCreated(function() {
   var self = this;
+  Session.set('searching', false);
   self.autorun(function () {
     if (Meteor.user()) {
       self.subscribe('favoriteNotes', Meteor.user().profile.favorites);

@@ -1,8 +1,3 @@
-/*
-  AutoComplete styles for Emoji One
-  http://git.emojione.com/demos/autocomplete.html
-*/
-
 .dropdown-menu {
   list-style: none;
   background-color: white;
@@ -17,7 +12,7 @@
 }
 .dropdown-menu li {
   letter-spacing: 0;
-  display: inline-block;
+  display: block;
   float: none;
   padding: 0;
   margin: 4px;

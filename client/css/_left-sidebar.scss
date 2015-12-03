@@ -67,9 +67,6 @@
     font-weight: 900;
     color: white;
   }
-  .aside-section {
-    margin-bottom: 35px;
-  }
   .user-circle-online {
     color: $online;
     font-size: 20px;
@@ -246,5 +243,17 @@
       }
     }
 
+  }
+  .notes-container {
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+  }
+  .note-search {
+    background-color: whitesmoke;
+    border: solid 1px lightgray;
+    border-radius: 4px;
+    padding: 4px;
+    width: 100%;
+    box-sizing: border-box;
   }
 }

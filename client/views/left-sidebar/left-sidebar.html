@@ -6,9 +6,32 @@
       </span>
     </div>
 
-    {{> favoriteNotes}}
+    <div class="notes-container">
+      {{> EasySearch.Input index=notesIndex attributes=inputAttributes}}
 
-    {{> recentNotes}}
+      {{#if searching}}
+        <div class="left-sidebar-notes aside-section">
+          <ul>
+            {{#EasySearch.Each index=notesIndex}}
+              <li class="{{activeChannelClass}}">
+                <i class="fa fa-star"></i>
+                <a href="{{pathFor 'note' note=__originalId}}">{{title}}</a>
+              </li>
+            {{/EasySearch.Each}}
+          </ul>
+
+          <!-- {{> EasySearch.LoadMore index=notesIndex}} -->
+
+          {{#EasySearch.IfNoResults index=notesIndex}}
+            <div class="no-results">No results found!</div>
+          {{/EasySearch.IfNoResults}}
+        </div>
+      {{/if}}
+
+      {{> favoriteNotes}}
+
+      {{> recentNotes}}
+    </div>
 
     <div class="left-sidebar-user-dropdown hidden">
       <div class="header-item">

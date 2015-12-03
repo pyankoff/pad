@@ -6,9 +6,12 @@ var calculateNearBottom = function () {
 
 Template.note.helpers({
   points: function () {
-    return Points.find({
-      noteId: currentNoteId()
-    }, {sort: {createdAt: 1}});
+    var pointIds = currentNote().points;
+    var points = Points.find({_id: {$in: pointIds}}).fetch();
+    points = _.sortBy(points, function(doc) {
+      return pointIds.indexOf(doc._id)
+    });
+    return points;
   },
   note: function () {
     return Notes.findOne({
@@ -65,7 +68,7 @@ Template.note.onRendered(function() {
   self.autorun(function () {
     if (currentNoteId()) {
       self.messageObserveHandle = Points.find({
-        noteId: currentNoteId()
+        _id: {$in: currentNote().points}
       }).observeChanges({
         added: function (id, doc) {
           if (self.isNearBottom.get()) {

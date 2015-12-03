@@ -11,9 +11,7 @@ Meteor.methods({
 		}
 
 		if(isOwner('Points', messageId)) {
-      Meteor.call('notes.unpinMessage', message.noteId, messageId);
 			Points.remove(messageId);
-
 		}
 	}
 });

@@ -1,9 +1,0 @@
-{
-  "public": {
-    "iframelyApiKey": null,
-    "analyticsSettings": {
-      "Google Analytics" : {"trackingId": "UA-57252107-7"},
-      "Mixpanel"         : {"token":  "49875cb9f0e46092b645edc3f74efe32", "people": true}
-    }
-  }
-}

@@ -1,6 +1,9 @@
 Template.pointInput.events({
+  'focus textarea[name=message]': function(e){
+    Session.set('searching', false);
+  },
   'keydown textarea[name=message]': function (event) {
-    if (isEnter(event) && ! event.shiftKey) { // Check if enter was pressed (but without shift).
+    if (isEnter(event) && ! event.shiftKey) {
       event.preventDefault();
       var value = $('textarea[name=message]').val();
       // Markdown requires double spaces at the end of the line to force line-breaks.
@@ -10,14 +13,14 @@ Template.pointInput.events({
       if ($.trim(value) === "") return;
 
       $('textarea[name=message]').val(''); // Clear the textarea.
-      Points.insert({
-        noteId: currentNoteId(),
+      var pointId = Points.insert({
         message: value
       });
 
       Notes.update(currentNoteId(), {
+        $addToSet: {points: pointId},
         $set: {updatedAt: new Date()}
-      })
+      });
 
       if (currentNote().suggestKeywords) {
         processWords();
@@ -38,46 +41,38 @@ Template.pointInput.events({
       }
 
       Session.set('insert', false);
+      analytics.track("New point", {
+        note: currentNote().title
+      });
     } else if (event.keyCode == 86 && event.metaKey) {
       Session.set("insert", true);
     }
   },
   'keyup textarea[name=message]': function (event) {
     $("textarea").textcomplete([ {
-      match: /\B:([\-+\w]*)$/,
+      match: /\B:([\-+\w]+)$/,
       search: function (term, callback) {
-        var results = [];
-        var results2 = [];
-        var results3 = [];
-        $.each(emojiStrategy,function(shortname,data) {
-          if(shortname.indexOf(term) > -1) { results.push(shortname); }
-          else {
-            if((data.aliases !== null) && (data.aliases.indexOf(term) > -1)) {
-              results2.push(shortname);
-            }
-            else if((data.keywords !== null) && (data.keywords.indexOf(term) > -1)) {
-              results3.push(shortname);
-            }
-          }
+        Tracker.autorun(function(){
+          var cursor = PointsIndex.search(term, {limit: 5});
+          var points = cursor.fetch();
+          callback(points);
         });
-
-        if(term.length >= 3) {
-          results.sort(function(a,b) { return (a.length > b.length); });
-          results2.sort(function(a,b) { return (a.length > b.length); });
-          results3.sort();
-        }
-        var newResults = results.concat(results2).concat(results3);
-
-        callback(newResults);
       },
-      template: function (shortname) {
-        return '<img class="emojione" src="//cdn.jsdelivr.net/emojione/assets/png/'+emojiStrategy[shortname].unicode+'.png"> :'+shortname+':';
+      template: function (value) {
+        return value.message;
       },
-      replace: function (shortname) {
-        return ':'+shortname+': ';
+      replace: function (value) {
+        var pointId = value.__originalId;
+        Notes.update({_id: currentNoteId()}, {$addToSet:{
+          points: pointId
+        }}, function() {
+          scrollDown();
+        });
+        return '';
       },
       index: 1,
-      maxCount: 10,
+      maxCount: 5,
+      debounce: 500
     }
     ]);
 
