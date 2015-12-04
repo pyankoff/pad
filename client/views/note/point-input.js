@@ -20,6 +20,8 @@ Template.pointInput.events({
       Notes.update(currentNoteId(), {
         $addToSet: {points: pointId},
         $set: {updatedAt: new Date()}
+      }, function() {
+        scrollDown();
       });
 
       if (currentNote().suggestKeywords) {
@@ -29,7 +31,6 @@ Template.pointInput.events({
       $('textarea[name=message]').css({
         height: 37
       });
-      scrollDown();
 
       Session.set("words", Session.get("words").concat(value.toLowerCase().split(' ')));
 
