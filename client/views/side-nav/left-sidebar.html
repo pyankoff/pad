@@ -7,7 +7,7 @@
     </header>
 
     <div class="notes-container">
-      {{> EasySearch.Input index=notesIndex attributes=inputAttributes}}
+      {{> EasySearch.Input index=notesIndex timeout=200 attributes=inputAttributes}}
 
       {{#if searching}}
         <div class="side-nav-notes aside-section">

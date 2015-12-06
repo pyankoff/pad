@@ -48,9 +48,10 @@ Message = BlazeComponent.extendComponent({
   previousMessage: function() {
     var self = this,
         current = self.currentData();
+    var pointIds = currentNote().points;
 
     return Points.findOne({
-      noteId: currentNoteId(),
+      _id: {$in: pointIds},
       createdAt: {$lt: current.createdAt}
     }, {sort: {createdAt: -1}, limit:1});
   },
@@ -62,6 +63,17 @@ Message = BlazeComponent.extendComponent({
 
     if (previous && previous.userId == current.userId
       && moment(current.timestamp).diff(previous.timestamp) < 120000) {
+      return false;
+    }
+    return true;
+  },
+
+  firstPoint: function() {
+   var self = this,
+      previous = self.previousMessage(),
+      current = self.currentData();
+
+    if (previous && moment(current.createdAt).diff(previous.createdAt) < 120000) {
       return false;
     }
     return true;

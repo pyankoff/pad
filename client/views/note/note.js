@@ -64,6 +64,7 @@ Template.note.onCreated(function() {
 
 Template.note.onRendered(function() {
   var self = this;
+
   $(window)
     .trigger('scroll');
 

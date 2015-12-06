@@ -15,7 +15,7 @@
 
     .message {
       color: $secondary;
-      line-height: 2em;
+      line-height: 1.5em;
 
       .cursor {
         display: none;
@@ -103,7 +103,6 @@
       position: relative;
       float: left;
       width: 100%;
-      margin-top: 8px;
 
       &.no-avatar {
         margin-left: 50px;

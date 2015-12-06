@@ -1,4 +1,7 @@
 <template name="message">
+  {{#if firstPoint}}
+    {{> section}}
+  {{/if}}
   <li>
     <div class="message-body">
       {{#if isEditing.get}}

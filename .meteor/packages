@@ -9,7 +9,13 @@ reactive-var
 accounts-password
 momentjs:moment
 fourseven:scss
+
+jquery
 copleykj:jquery-autosize
+natestrauser:jquery-scrollto
+mquandalle:jquery-textcomplete
+maazalik:malihu-jquery-custom-scrollbar
+
 tmeasday:gravatar
 kadira:blaze-layout
 kadira:flow-router
@@ -17,7 +23,6 @@ peerlibrary:blaze-components
 todda00:friendly-slugs
 arillo:flow-router-helpers
 seriousm:emoji-continued
-jquery
 kevohagan:sweetalert
 fortawesome:fontawesome
 aldeed:autoform
@@ -28,14 +33,13 @@ twbs:bootstrap-noglyph
 useraccounts:core
 useraccounts:flow-routing
 useraccounts:bootstrap
+
 dburles:collection-helpers
 iframely:oembed
 matb33:collection-hooks
 qnub:emojione
-mquandalle:jquery-textcomplete
 ogourment:settings
 tmeasday:presence
-maazalik:malihu-jquery-custom-scrollbar
 standard-minifiers
 meteor-base
 mobile-experience
