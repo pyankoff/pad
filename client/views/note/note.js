@@ -6,12 +6,14 @@ var calculateNearBottom = function () {
 
 Template.note.helpers({
   points: function () {
-    var pointIds = currentNote().points;
-    var points = Points.find({_id: {$in: pointIds}}).fetch();
-    points = _.sortBy(points, function(doc) {
-      return pointIds.indexOf(doc._id)
-    });
-    return points;
+    if (currentNote()) {
+      var pointIds = currentNote().points;
+      var points = Points.find({_id: {$in: pointIds}}).fetch();
+      points = _.sortBy(points, function(doc) {
+        return pointIds.indexOf(doc._id)
+      });
+      return points;
+    }
   },
   note: function () {
     return Notes.findOne({
@@ -66,7 +68,7 @@ Template.note.onRendered(function() {
     .trigger('scroll');
 
   self.autorun(function () {
-    if (currentNoteId()) {
+    if (currentNote()) {
       self.messageObserveHandle = Points.find({
         _id: {$in: currentNote().points}
       }).observeChanges({

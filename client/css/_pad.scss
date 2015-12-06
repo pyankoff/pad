@@ -21,7 +21,7 @@
 	height: auto;
 }
 
-@media all and(max-width: 780px) {
+@media all and(max-width: 767px) {
 	#pad {
 		.side-nav {
 			top: 0;
@@ -43,6 +43,9 @@
 			.main-content {
 				transform: translateX($sidebar-width);
 			}
+		}
+		input.recipe-input {
+			margin-left: 50px;
 		}
 	}
 }

@@ -16,17 +16,21 @@ Template.leftSidebar.helpers({
 
 Template.favoriteNotes.helpers({
   notes: function () {
-    return Notes.find({_id: {$in: Meteor.user().profile.favorites}});
+    if (Meteor.user() && Meteor.user().profile) {
+      return Notes.find({_id: {$in: Meteor.user().profile.favorites}});
+    }
   },
   activeChannelClass: activeChannelClass
 });
 
 Template.recentNotes.helpers({
   notes: function () {
-    return Notes.find({$and: [
-      {userId: Meteor.userId()},
-      {_id: {$not: {$in: Meteor.user().profile.favorites}}}]},
-            {sort: {updatedAt: -1}, limit: 10});
+    if (Meteor.user() && Meteor.user().profile) {
+      return Notes.find({$and: [
+        {userId: Meteor.userId()},
+        {_id: {$not: {$in: Meteor.user().profile.favorites}}}]},
+              {sort: {updatedAt: -1}, limit: 10});
+    }
   },
   activeChannelClass: activeChannelClass
 });
@@ -48,7 +52,7 @@ Template.leftSidebar.events({
   },
   'click .fa-star': function(e) {
     Meteor.users.update(Meteor.userId(), {
-      $pull: {'profile.favorites': String(this)}
+      $pull: {'profile.favorites': this._id}
     });
   },
   'click .side-nav-user-show-dropdown': function (event) {

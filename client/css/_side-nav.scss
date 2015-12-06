@@ -4,7 +4,6 @@
   top:0;
   bottom: 0;
   background: $primary;
-  padding: $padding;
   box-sizing: border-box;
   z-index: 2;
   .header {
@@ -27,6 +26,11 @@
       padding-left: 15px;
     }
 	}
+  .aside-section {
+    p {
+      margin: 10px;
+    }
+  }
   label {
     text-transform: uppercase;
     font-size: 14px;
@@ -34,19 +38,16 @@
   &, a {
     color: lighten($primary, 50%);
     text-decoration: none;
-    text-shadow: 1px 1px darken($primary, 5%);
   }
   a {
-    padding: 0;
+    padding: 5px;
     display: block;
-  }
-  ul {
-    margin: $padding/2 0;
   }
   li a:before {
     color: lighten($primary, 10%);
   }
   li {
+    padding: 0 $padding;
     i {
       display: none;
       float: right;
@@ -56,18 +57,16 @@
     &:hover {
       i {
         display: block;
+        &:hover {
+          color: white;
+        }
       }
     }
   }
   .active {
-    background: $accent;
-    margin-left: -$padding;
-    margin-right: -$padding;
-    padding-right: $padding;
-    padding-left: $padding;
+    background: transparentize(#fff, 0.7);
     a {
       color: white;
-      text-shadow: 1px 1px darken($accent, 10%);
       &:before {
         color: lighten($accent, 20%);
       }
@@ -93,12 +92,6 @@
   }
 
   &-notes {
-    li a:before {
-      content: '#';
-      margin-right: 3px;
-      font-weight: bolder;
-    }
-
     &-add-form {
       padding: $padding/2 0;
       input[type="text"] {
@@ -126,7 +119,7 @@
     width: $sidebar-width;
     box-sizing: border-box;
     padding: $padding/2;
-    margin: 0 (-$padding);
+    margin: 0;
     bottom: 0;
     background: darken($primary, 5%);
     line-height: 35px;
@@ -256,11 +249,20 @@
     overflow-y: scroll;
   }
   .note-search {
+    color: $primary;
+    margin-top: $padding;
+    margin-left: $padding;
+    margin-right: $padding;
+    margin-bottom: 5px;
     background-color: whitesmoke;
     border: solid 1px lightgray;
     border-radius: 4px;
     padding: 4px;
-    width: 100%;
+    width: calc(100% - 2 * #{$padding});
     box-sizing: border-box;
+  }
+  .no-results {
+    padding-left: $padding;
+    padding-right: $padding;
   }
 }
