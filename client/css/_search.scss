@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   height: $top;
-  left: $sidebar-width;
+  left: 0;
   background: white;
   right: 0px;
   input.recipe-input {
@@ -24,10 +24,6 @@
     float: left;
     font-size: 24px;
     font-weight: 500;
-  }
-
-  .fa-search {
-    color: lighten(desaturate($primary, 30%), 30%);
   }
 }
 

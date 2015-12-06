@@ -1,12 +1,32 @@
-.left-sidebar {
+.side-nav {
   position: fixed;
-  top: $top;
   width: $sidebar-width;
+  top:0;
+  bottom: 0;
   background: $primary;
-  height: calc(100% - 53px);
   padding: $padding;
   box-sizing: border-box;
   z-index: 2;
+  .header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 110;
+		cursor: pointer;
+		min-height: $top;
+		height: $top;
+    background-color: darken($primary, 5%);
+    display: table;
+    .side-nav-title {
+      font-weight: 900;
+      color: white;
+      font-size: 1.7em;
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 15px;
+    }
+	}
   label {
     text-transform: uppercase;
     font-size: 14px;
@@ -52,20 +72,6 @@
         color: lighten($accent, 20%);
       }
     }
-  }
-  .team {
-    position: fixed;
-    top: 0;
-    background: darken($primary, 5%);
-    width: $sidebar-width;
-    margin-left: -$padding;
-    padding-left: $padding;
-    text-shadow: none;
-    line-height: $top;
-    height: $top;
-    box-sizing: border-box;
-    font-weight: 900;
-    color: white;
   }
   .user-circle-online {
     color: $online;
@@ -115,9 +121,9 @@
   }
 
   &-user {
-    position: fixed;
+    position: absolute;
     display: block;
-    width: 220px;
+    width: $sidebar-width;
     box-sizing: border-box;
     padding: $padding/2;
     margin: 0 (-$padding);
@@ -245,6 +251,7 @@
 
   }
   .notes-container {
+    margin-top: $top;
     height: calc(100% - 40px);
     overflow-y: scroll;
   }

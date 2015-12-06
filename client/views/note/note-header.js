@@ -18,5 +18,8 @@ Template.noteHeader.events({
       suggestKeywords: true
     });
     FlowRouter.go('note', {'note': noteId});
+  },
+  'click .fa-bars': function(e) {
+    menu.toggle();
   }
 });

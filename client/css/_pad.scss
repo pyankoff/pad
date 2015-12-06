@@ -1,0 +1,48 @@
+#pad {
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	opacity: 1;
+	visibility: visible;
+}
+
+.main-content {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: $sidebar-width;
+	right: 0;
+	width: auto;
+	height: auto;
+}
+
+@media all and(max-width: 780px) {
+	#pad {
+		.side-nav {
+			top: 0;
+      transition: transform .3s linear;
+		}
+		.main-content {
+			left: 0;
+			transition: transform .2s linear;
+			z-index: 1000;
+
+			&.notransition {
+				transition: transform .0s;
+			}
+		}
+		&.menu-opened {
+			.side-nav {
+				transform: translateX(0);
+			}
+			.main-content {
+				transform: translateX($sidebar-width);
+			}
+		}
+	}
+}

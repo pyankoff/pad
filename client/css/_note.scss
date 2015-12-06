@@ -1,15 +1,14 @@
 .note {
-
   &-content {
+    position: absolute;
     padding: 16px $padding*4/3 0 $padding*4/3;
     top: 53px;
-    bottom: 71px;
+    bottom: 60px;
     overflow-y: auto;
-    left: $sidebar-width;
-    position: fixed;
+    left: 0;
     right: $note-info-width;
     right: 0;
-
+    background-color: white;
     &.home-content{
       margin-left: 0;
     }
@@ -119,9 +118,9 @@
   }
 
   &-footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    left: $sidebar-width;
+    left: 0;
     padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
@@ -248,7 +247,6 @@
         color: lighten($secondary, 20%);
         font-size: 0.7rem;
         z-index: 2;
-        padding-right: 1rem;
         position: relative;
       }
     }

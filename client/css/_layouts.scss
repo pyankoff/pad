@@ -115,38 +115,9 @@
 
     }
 
-    .logo {
-      margin: 0 auto;
-      padding: 32px 32px 0;
-
-      &-image {
-        box-sizing: border-box;
-        max-width: 100%;
-        width: 468px;
-        height: auto;
-        display: inline-block;
-
-        img {
-          margin-left: -12px;
-          max-width: 100%;
-          width: 468px;
-          height: auto;
-        }
-      }
-    }
-
     @media (max-width: 500px) {
       .wide {
         display: none;
-      }
-      .logo {
-        background-position: center bottom 110px;
-      }
-    }
-
-    @media (max-width: 374px) {
-      .logo {
-        background-position: center bottom 100px;
       }
     }
   }

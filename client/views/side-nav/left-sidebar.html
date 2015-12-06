@@ -1,16 +1,16 @@
 <template name="leftSidebar">
-  <aside class="left-sidebar">
-    <div class="team">
-      <span class="left-sidebar-title">
+  <aside class="side-nav">
+    <header class="header">
+      <span class="side-nav-title">
           Encyclopad
       </span>
-    </div>
+    </header>
 
     <div class="notes-container">
       {{> EasySearch.Input index=notesIndex attributes=inputAttributes}}
 
       {{#if searching}}
-        <div class="left-sidebar-notes aside-section">
+        <div class="side-nav-notes aside-section">
           <ul>
             {{#EasySearch.Each index=notesIndex}}
               <li class="{{activeChannelClass}}">
@@ -33,7 +33,7 @@
       {{> recentNotes}}
     </div>
 
-    <div class="left-sidebar-user-dropdown hidden">
+    <div class="side-nav-user-dropdown hidden">
       <div class="header-item">
         <hr/>
         <span class="header-item-content">For me</span>
@@ -49,16 +49,16 @@
         <li class="menu-item">{{currentUser.profile.wordCount}}</li>
       </ul>
     </div>
-    <div class="left-sidebar-user">
+    <div class="side-nav-user">
       <img src="{{currentUser.avatar}}" class="user-avatar">
       <a href="#">{{currentUser.username}}</a>
-      <button type="button" class="left-sidebar-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
+      <button type="button" class="side-nav-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
     </div>
   </aside>
 </template>
 
 <template name="favoriteNotes">
-  <div class="left-sidebar-notes aside-section">
+  <div class="side-nav-notes aside-section">
     <p>FAVORITE</p>
     <ul>
       {{#each notes}}
@@ -72,7 +72,7 @@
 </template>
 
 <template name="recentNotes">
-  <div class="left-sidebar-notes aside-section">
+  <div class="side-nav-notes aside-section">
     <p>RECENT</p>
     <ul>
       {{#each notes}}

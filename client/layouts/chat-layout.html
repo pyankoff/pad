@@ -1,6 +1,8 @@
 <template name="chatLayout">
-  <div class="team">
+  <div id="pad">
     {{> leftSidebar}}
-    {{> Template.dynamic template=main}}
+    <div class="main-content">
+      {{> Template.dynamic template=main}}
+    </div>
   </div>
 </template>

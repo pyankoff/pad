@@ -51,11 +51,11 @@ Template.leftSidebar.events({
       $pull: {'profile.favorites': String(this)}
     });
   },
-  'click .left-sidebar-user-show-dropdown': function (event) {
+  'click .side-nav-user-show-dropdown': function (event) {
     event.preventDefault();
 
-    $(".left-sidebar-user-dropdown").toggleClass("hidden");
-    $(".left-sidebar-user-show-dropdown").toggleClass("visible");
+    $(".side-nav-user-dropdown").toggleClass("hidden");
+    $(".side-nav-user-show-dropdown").toggleClass("visible");
   },
   'focus input': function(e) {
     Session.set('searching', true);
@@ -77,4 +77,8 @@ Template.favoriteNotes.onCreated(function() {
       self.subscribe('favoriteNotes', Meteor.user().profile.favorites);
     }
   });
-})
+});
+
+Template.leftSidebar.onRendered(function() {
+  menu.init();
+});
