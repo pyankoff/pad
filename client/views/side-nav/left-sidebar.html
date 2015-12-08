@@ -1,9 +1,11 @@
 <template name="leftSidebar">
   <aside class="side-nav">
     <header class="header">
-      <span class="side-nav-title">
-          Encyclopad
-      </span>
+      <a href="{{pathFor 'home'}}">
+        <span class="side-nav-title">
+            Encyclopad
+        </span>
+      </a>
     </header>
 
     <div class="notes-container">
@@ -61,6 +63,9 @@
   <div class="side-nav-notes aside-section">
     <p>FAVORITE</p>
     <ul>
+      <li class="{{activeChannelClass}}">
+        <a href="{{pathFor 'home'}}">#home</a>
+      </li>
       {{#each notes}}
       <li class="{{activeChannelClass}}">
         <i class="fa fa-star"></i>

@@ -1,7 +1,7 @@
 <template name="section">
   <div class="divider">
     <span class="section-title">
-      {{message}}
+      <a href="{{pathFor 'note' note=noteId}}">{{message}}</a>
       <i class="fa fa-times"></i>
     </span>
   </div>

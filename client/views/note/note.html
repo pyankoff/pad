@@ -1,18 +1,18 @@
 <template name="note">
     {{> noteHeader}}
 
-    {{#content class="note-content"}}
+    <div class="note-content">
       <ul class="note-content-scroll">
         {{#each points}}
           {{> point this}}
         {{/each}}
       </ul>
-    {{/content}}
-    {{#footer class="note-footer"}}
+    </div>
+
+    <footer id="spacetalk-footer" class="note-footer">
       {{> messageTab}}
       {{> pointInput}}
-    {{/footer}}
-
+    </footer>
 </template>
 
 

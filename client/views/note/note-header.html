@@ -1,8 +1,19 @@
 <template name="noteHeader">
-  {{#header class="note-header"}}
+  <header class="note-header">
     <i class="fa fa-bars visible-xs-block"></i>
-    <input type="text" class="recipe-input" value="{{title}}">
-    <i class="fa fa-plus"></i>
+
+    <h2>
+      <a href="#favorite" class="toggle-favorite">
+        <i class="{{favorite}}" aria-label=""></i>
+      </a>
+      <span class="room-title {{editingTitle}}">{{title}}</span>
+      <input type="text" id="note-title-field" class="{{showEditingTitle}}" value="{{title}}" dir="auto">
+      <a href="#edit" class="edit-room-title">
+        <i class="fa fa-pencil" aria-label="Edit"></i>
+      </a>
+    </h2>
+
     <a href="/search"><i class="fa fa-search"></i></a>
-  {{/header}}
+    <i class="fa fa-plus"></i>
+  </header>
 </template>

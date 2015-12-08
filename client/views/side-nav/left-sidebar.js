@@ -55,6 +55,9 @@ Template.leftSidebar.events({
       $pull: {'profile.favorites': this._id}
     });
   },
+  'click li > a': function(e) {
+    menu.close();
+  },
   'click .side-nav-user-show-dropdown': function (event) {
     event.preventDefault();
 

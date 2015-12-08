@@ -17,11 +17,17 @@ Template.pointInput.events({
       var point = {
         message: value
       };
-      if (value.substring(0, 3) === '---') {
+      if (value.substring(0, 2) === '--') {
+        var sectionTitle = value.replace(/--+/g, "");
+        var noteId = Notes.insert({
+          title: sectionTitle
+        });
+
         point = {
-          message: value.replace(/--+/g, ""),
+          message: sectionTitle,
+          noteId: noteId,
           section: true
-        }
+        };
       }
       var pointId = Points.insert(point);
 
@@ -32,15 +38,28 @@ Template.pointInput.events({
         scrollDown();
       });
 
+      var section = Points.findOne({
+        _id: {$in: currentNote().points},
+        section: true
+      }, {sort: {createdAt: -1}, limit:1});
+
+      if (section && !noteId) {
+        Notes.update(section.noteId, {
+          $addToSet: {points: pointId},
+          $set: {updatedAt: new Date()}
+        });
+      };
+
       if (currentNote().suggestKeywords) {
         processWords();
+        Session.set("words", Session.get("words").concat(value.toLowerCase().split(' ')));
       }
 
       $('textarea[name=message]').css({
         height: 37
       });
 
-      Session.set("words", Session.get("words").concat(value.toLowerCase().split(' ')));
+
 
       if (!Session.get("insert")) {
         var wordCount = value.split(' ').length;

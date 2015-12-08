@@ -47,3 +47,26 @@ ul, li {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   border: none;
 }
+
+// input & form styles
+input:focus {
+	outline: none;
+	box-shadow: 0 0 0;
+}
+
+textarea,
+select,
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'] {
+	-webkit-appearance: none;
+	height: 35px;
+	line-height: normal;
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 2px 8px;
+	position: relative;
+	width: 100%;
+	outline: none;
+}

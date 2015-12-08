@@ -6,6 +6,6 @@ scrollDown = function () {
   // scroll all the way down for some reason
   setTimeout(function () {
     // Scroll down the page
-    $('#spacetalk-content').scrollTop($('#spacetalk-content')[0].scrollHeight);
+    $('.note-content').scrollTop($('.note-content')[0].scrollHeight);
   }, 0);
 };
