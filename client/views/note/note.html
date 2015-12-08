@@ -3,9 +3,7 @@
 
     <div class="note-content">
       <ul class="note-content-scroll">
-        {{#each points}}
-          {{> point this}}
-        {{/each}}
+        {{> notePoints note=currentNote}}
       </ul>
     </div>
 

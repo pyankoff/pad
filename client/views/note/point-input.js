@@ -28,23 +28,41 @@ Template.pointInput.events({
           noteId: noteId,
           section: true
         };
+      } else if ((currentNoteId() === undefined &&
+            Session.equals('newNoteId', undefined))) {
+        var noteId = Notes.insert({
+          title: 'new note'
+        });
+        Points.insert({
+          message: 'new note',
+          noteId: noteId,
+          section: true
+        });
+        Session.set('newNoteId', noteId);
       }
       var pointId = Points.insert(point);
 
-      Notes.update(currentNoteId(), {
-        $addToSet: {points: pointId},
-        $set: {updatedAt: new Date()}
-      }, function() {
-        scrollDown();
-      });
+      if (currentNoteId()) {
+        Notes.update(currentNoteId(), {
+          $addToSet: {points: pointId},
+          $set: {updatedAt: new Date()}
+        }, function() {
+          scrollDown();
+        });
 
-      var section = Points.findOne({
-        _id: {$in: currentNote().points},
-        section: true
-      }, {sort: {createdAt: -1}, limit:1});
+        var section = Points.findOne({
+          _id: {$in: currentNote().points},
+          section: true
+        }, {sort: {createdAt: -1}, limit:1});
+        if (section) {
+          var sectionId = section._id;
+        }
+      } else {
+        var sectionId = Session.get('newNoteId');
+      }
 
-      if (section && !noteId) {
-        Notes.update(section.noteId, {
+      if (sectionId) {
+        Notes.update(sectionId, {
           $addToSet: {points: pointId},
           $set: {updatedAt: new Date()}
         });

@@ -5,41 +5,10 @@ var calculateNearBottom = function () {
 };
 
 Template.note.helpers({
-  points: function () {
-    if (currentNote()) {
-      var pointIds = currentNote().points;
-      var points = Points.find({_id: {$in: pointIds}}).fetch();
-      points = _.sortBy(points, function(doc) {
-        return pointIds.indexOf(doc._id)
-      });
-      return points;
-    }
-  },
   note: function () {
     return Notes.findOne({
       _id: currentNoteId()
     });
-  },
-  user: function () {
-    return Meteor.users.findOne({
-      _id: this.currentData()._userId
-    });
-  },
-  time: function () {
-    return moment(this.timestamp).format('h:mm a');
-  },
-  date: function () {
-    var dateNow = moment(this.currentData().timestamp).calendar();
-
-    if (!this.date || this.date !== dateNow) {
-      return this.date = dateNow;
-    }
-  },
-  avatar: function () {
-    var user = Meteor.users.findOne(this.currentData().userId);
-    if (user && user.emails) {
-      return Gravatar.imageUrl(user.emails[0].address);
-    }
   }
 });
 

@@ -1,19 +1,22 @@
-@import "other/vars";
-@import "other/mixins";
+@import "utils/reset";
+@import "utils/vars";
+@import "utils/colors";
 
 @import "layout/layouts";
+@import "layout/side-nav";
+@import "layout/pad";
+
+@import "other/mixins";
 @import "other/form";
 @import "other/accounts";
-@import "layout/side-nav";
-@import "note-view/note";
-@import "note-view/note-title";
 @import "other/user";
 @import "other/styles";
 @import "other/sweetalert-override";
 @import "other/textcomplete";
-@import "note-view/search";
 @import "other/landing";
-@import "layout/pad";
-@import "note-view/point";
-@import "utils/colors";
-@import "utils/reset";
+
+@import "chat/search";
+@import "chat/point";
+@import "chat/note";
+@import "chat/note-title";
+@import "chat/home";

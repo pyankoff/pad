@@ -1,3 +1,39 @@
 <template name="home">
-  {{> note}}
+  <header class="note-header">
+    <i class="fa fa-bars visible-xs-block"></i>
+
+    <h2>
+      <span class="room-title {{editingTitle}}">home</span>
+    </h2>
+
+    <a href="/search"><i class="fa fa-search"></i></a>
+    <i class="fa fa-plus"></i>
+  </header>
+
+  <div class="note-content">
+    <ul class="note-content-scroll">
+      <div class="inspiration">
+        <h2>Write something amazing today!</h2>
+      </div>
+      {{> recentPoints}}
+      <div class="inspiration">
+        <h2>Write to the field below.</h2>
+      </div>
+      {{> point section}}
+      {{> notePoints note=newNote}}
+    </ul>
+  </div>
+
+  <footer id="spacetalk-footer" class="note-footer">
+    {{> messageTab}}
+    {{> pointInput}}
+  </footer>
+</template>
+
+
+<template name="recentPoints">
+  <h2>Your recent notes:</h2>
+  {{#each points}}
+    {{> point this}}
+  {{/each}}
 </template>
