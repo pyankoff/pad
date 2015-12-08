@@ -1,10 +1,7 @@
-<template name="message">
-  {{#if firstPoint}}
-    {{> section}}
-  {{/if}}
+<template name="point">
   <li>
     <div class="message-body">
-      {{#if isEditing.get}}
+      {{#if isEditing}}
         {{> messageEditBox}}
       {{else}}
         <span class="modify">
@@ -13,14 +10,19 @@
           <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
           {{/if}}
         </span>
-        <div class="message">{{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
-          <span class="cursor"></span>
-          {{#if messageUrls}}
-            {{#each messageUrls}}
-              {{> oembed url=this}}
-            {{/each}}
-          {{/if}}
-        </div>
+        {{#if section}}
+          {{> section}}
+        {{else}}
+          <div class="message">
+            {{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
+            <span class="cursor"></span>
+            {{#if messageUrls}}
+              {{#each messageUrls}}
+                {{> oembed url=this}}
+              {{/each}}
+            {{/if}}
+          </div>
+        {{/if}}
       {{/if}}
     </div>
   </li>

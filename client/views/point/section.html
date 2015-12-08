@@ -1,12 +1,8 @@
 <template name="section">
   <div class="divider">
     <span class="section-title">
-      {{#if isEditing}}
-        <input type="text" class="section-input" value="asdf">
-      {{else}}
-        Section Title
-        <i class="fa fa-times"></i>
-      {{/if}}
+      {{message}}
+      <i class="fa fa-times"></i>
     </span>
   </div>
 </template>

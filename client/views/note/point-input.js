@@ -13,9 +13,17 @@ Template.pointInput.events({
       if ($.trim(value) === "") return;
 
       $('textarea[name=message]').val(''); // Clear the textarea.
-      var pointId = Points.insert({
+
+      var point = {
         message: value
-      });
+      };
+      if (value.substring(0, 3) === '---') {
+        point = {
+          message: value.replace(/--+/g, ""),
+          section: true
+        }
+      }
+      var pointId = Points.insert(point);
 
       Notes.update(currentNoteId(), {
         $addToSet: {points: pointId},
