@@ -13,26 +13,53 @@
   <div class="note-content">
     <ul class="note-content-scroll">
       <div class="inspiration">
-        <h2>Write something amazing today!</h2>
+        <p>
+          {{#markdown}}Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use.{{/markdown}}</p>
+        <p><strong>- Steve Jobs</strong></p>
       </div>
-      {{> recentPoints}}
+
+      {{> stats}}
+
       <div class="inspiration">
-        <h2>Write to the field below.</h2>
+        <p>Just drop your thoughts into the field below.</p>
       </div>
       {{> point section}}
       {{> notePoints note=newNote}}
     </ul>
   </div>
 
-  <footer id="spacetalk-footer" class="note-footer">
+  <footer class="note-footer">
     {{> messageTab}}
     {{> pointInput}}
   </footer>
 </template>
 
+<template name="stats">
+  <div class="panel panel-info stat-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title text-center">Your thinking statistics</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-4">
+          Points written today
+          <h1>{{stat.points}}</h1>
+        </div>
+        <div class="col-xs-4">
+          Words written today
+          <h1>{{stat.wordsDay}}</h1>
+        </div>
+        <div class="col-xs-4">
+          Total words written
+          <h1>{{stat.wordsTotal}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <template name="recentPoints">
-  <h2>Your recent notes:</h2>
+  <h3>Your recent notes:</h3>
   {{#each points}}
     {{> point this}}
   {{/each}}

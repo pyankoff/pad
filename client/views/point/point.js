@@ -53,6 +53,11 @@ Template.point.events({
         $set: { message: value }
       });
 
+      if (this.section) {
+        Notes.update(this.noteId, {
+          $set: {title: value}
+        })
+      }
 
       var position = self.$('.message .cursor').position();
       if (position) {
@@ -99,6 +104,9 @@ var _focus = function () {
   if (input.setSelectionRange) {
     var len = input.value.length * 2;
     input.setSelectionRange(len, len);
+    if (this.section) {
+      input.setSelectionRange(0, len);
+    }
   } else {
     $(input).val($(input).val());
   }
@@ -120,6 +128,6 @@ var toggleEdit = function () {
   Template.instance().isEditing.set(toggled);
 
   if (toggled) {
-    _focus();
+    // _focus();
   }
 };

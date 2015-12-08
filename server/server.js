@@ -1,5 +1,5 @@
 Meteor.startup(function() {
-
+  SyncedCron.start();
 });
 
 Accounts.onCreateUser(function(options, user) {
@@ -9,7 +9,12 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = {}
   }
 
-  user.profile.favorites = []
+  user.profile.favorites = [];
+  user.profile.stats = {
+    "wordsDay": 0,
+    "wordsTotal": 0,
+    "points": 0
+  }
 
   return user;
 });

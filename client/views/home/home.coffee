@@ -4,10 +4,13 @@ Template.home.helpers
   newNote: ->
     Notes.findOne Session.get('newNoteId')
 
+Template.stats.helpers
+  stat: ->
+    Meteor.user().profile?.stats
+
 Template.recentPoints.helpers
   points: ->
     Points.find {section: {$ne: true}}, {sort: {createdAt: 1}, limit: 5}
-
 
 Template.recentPoints.onCreated ->
   self = this
@@ -17,4 +20,5 @@ Template.recentPoints.onCreated ->
 Template.home.onCreated ->
   self = this
   @autorun ->
-    self.subscribe 'note', Session.get 'newNoteId'
+    noteId = Session.get 'newNoteId'
+    self.subscribe 'note', noteId

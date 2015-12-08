@@ -2,7 +2,8 @@
   <div class="divider">
     <span class="section-title">
       <a href="{{pathFor 'note' note=noteId}}">{{message}}</a>
-      <i class="fa fa-times"></i>
+      <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
+      <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
     </span>
   </div>
 </template>

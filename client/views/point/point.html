@@ -4,15 +4,15 @@
       {{#if isEditing}}
         {{> messageEditBox}}
       {{else}}
-        <span class="modify">
-          {{#if isOwner}}
-          <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
-          {{/if}}
-        </span>
         {{#if section}}
           {{> section}}
         {{else}}
+          <span class="modify">
+            {{#if isOwner}}
+            <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
+            {{/if}}
+          </span>
           <div class="message">
             {{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
             <span class="cursor"></span>

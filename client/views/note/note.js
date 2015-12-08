@@ -17,16 +17,8 @@ Template.note.onCreated(function() {
   self.isNearBottom = new ReactiveVar(false);
 
   self.autorun(function () {
-    self.subscribe('notePoints', currentNoteId(), function () {
+    self.subscribe('note', currentNoteId(), function () {
         scrollDown();
-
-        if (currentNote().suggestKeywords) {
-          var words = []
-          Points.find({noteId: currentNoteId()}).forEach(function(point) {
-            words = words.concat(point.message.toLowerCase().split(' '));
-          });
-          Session.set('words', words);
-        }
     });
   });
 });
