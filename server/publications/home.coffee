@@ -1,5 +1,5 @@
-Meteor.publish 'recentPoints', (date) ->
+Meteor.publish 'home', (pointIds) ->
 	Points.find {
-		userId: @userId,
-		createdAt: {$lt: date}
-	}, {sort: {createdAt: -1}, limit: 5}
+		_id: {$in: pointIds},
+		userId: @userId
+	}

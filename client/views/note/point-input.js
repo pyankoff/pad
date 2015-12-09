@@ -5,43 +5,30 @@ Template.pointInput.events({
   'keydown textarea[name=message]': function (event) {
     if (isEnter(event) && ! event.shiftKey) {
       event.preventDefault();
-      var value = $('textarea[name=message]').val();
+      var text = $('textarea[name=message]').val();
       // Markdown requires double spaces at the end of the line to force line-breaks.
-      value = value.replace(/([^\n])\n/g, "$1  \n");
+      text = text.replace(/([^\n])\n/g, "$1  \n");
 
       // Prevent accepting empty message
-      if ($.trim(value) === "") return;
+      if ($.trim(text) === "") return;
 
-      $('textarea[name=message]').val(''); // Clear the textarea.
+      // Clear the textarea.
+      $('textarea[name=message]').val('');
+      $('textarea[name=message]').css({
+        height: 37
+      });
 
-      var point = {
-        message: value
-      };
-      if (value.substring(0, 2) === '--') {
-        var sectionTitle = value.replace(/--+/g, "");
-        var noteId = Notes.insert({
-          title: sectionTitle
-        });
-
+      var point;
+      if (isDivider(text)) {
+        point = createDivider(text.replace(/--+/g, ""));
+      } else {
         point = {
-          message: sectionTitle,
-          noteId: noteId,
-          section: true
+          message: text
         };
-      } else if ((currentNoteId() === undefined &&
-            Session.equals('newNoteId', undefined))) {
-        var noteId = Notes.insert({
-          title: 'new note'
-        });
-        sectionId = Points.insert({
-          message: 'new note',
-          noteId: noteId,
-          section: true
-        });
-        Session.set('newNoteId', noteId);
       }
       var pointId = Points.insert(point);
 
+      // insert into note
       if (currentNoteId()) {
         Notes.update(currentNoteId(), {
           $addToSet: {points: pointId},
@@ -49,30 +36,36 @@ Template.pointInput.events({
         }, function() {
           scrollDown();
         });
-
-        var section = Points.findOne({
-          _id: {$in: currentNote().points},
-          section: true
-        }, {sort: {createdAt: -1}, limit:1});
-        if (section) {
-          var sectionId = section._id;
-        }
       } else {
-        var sectionId = Session.get('newNoteId');
+        var currentPoints = Meteor.user().profile.currentPoints;
+        currentPoints = _.last(currentPoints, 20);
+        currentPoints.push(pointId);
+        Meteor.users.update(Meteor.userId(), {
+          $set: {'profile.currentPoints': currentPoints}
+        }, function() {
+          scrollDown();
+        });
       }
 
-      if (sectionId) {
+      // find divider notes
+      var pointIds = currentNote() ? currentNote().points : currentPoints;
+      var section = Points.findOne({
+        _id: {$in: pointIds},
+        section: true
+      }, {sort: {createdAt: -1}, limit:1});
+      if (section) {
+        var sectionId = section.noteId;
+      }
+
+      if (sectionId && pointId != section._id) {
         Notes.update(sectionId, {
           $addToSet: {points: pointId},
           $set: {updatedAt: new Date()}
         });
       };
 
-      $('textarea[name=message]').css({
-        height: 37
-      });
-
-      var wordCount = value.split(' ').length;
+      // count words
+      var wordCount = text.split(' ').length;
       if (!Session.get("insert")) {
         Meteor.users.update(Meteor.userId(), {
           $inc: {
@@ -92,9 +85,7 @@ Template.pointInput.events({
       };
 
       Session.set('insert', false);
-      analytics.track("New point", {
-
-      });
+      analytics.track("New point");
     } else if (event.keyCode == 86 && event.metaKey) {
       Session.set("insert", true);
     }
@@ -109,11 +100,11 @@ Template.pointInput.events({
           callback(points);
         });
       },
-      template: function (value) {
-        return value.message;
+      template: function (text) {
+        return text.message;
       },
-      replace: function (value) {
-        var pointId = value.__originalId;
+      replace: function (text) {
+        var pointId = text.__originalId;
         Notes.update({_id: currentNoteId()}, {$addToSet:{
           points: pointId
         }}, function() {
@@ -133,3 +124,20 @@ Template.pointInput.events({
     });
   }
 });
+
+function isDivider(text) {
+  return text.substring(0, 2) === '--';
+}
+
+function createDivider(title) {
+  var noteId = Notes.insert({
+    title: title
+  });
+
+  point = {
+    message: title,
+    noteId: noteId,
+    section: true
+  };
+  return point;
+}

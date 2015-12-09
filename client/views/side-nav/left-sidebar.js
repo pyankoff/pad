@@ -81,8 +81,8 @@ Template.leftSidebar.events({
     e.preventDefault();
 
     Meteor.setTimeout(function(){
-      $(".side-nav-user-dropdown").toggleClass("hidden");
-      $(".side-nav-user-show-dropdown").toggleClass("visible");
+      $(".side-nav-user-dropdown").addClass("hidden");
+      $(".side-nav-user-show-dropdown").removeClass("visible");
     }, 100);
   },
   'focus input': function(e) {
