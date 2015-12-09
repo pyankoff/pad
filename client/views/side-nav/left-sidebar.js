@@ -10,7 +10,7 @@ Template.leftSidebar.helpers({
     return Session.get('searching');
   },
   inputAttributes: function() {
-    return {class: 'note-search', placeholder: 'Search...'}
+    return {class: 'note-search', placeholder: 'Search notes'}
   }
 });
 
@@ -41,7 +41,14 @@ Template.leftSidebar.events({
 
     Meteor.logout(function (error) {
       if (!error) {
-        FlowRouter.go('home');
+        swal({
+          title: "Bye!",
+          timer: 1000,
+          showConfirmButton: true
+        });
+        Meteor.setTimeout(function(){
+           FlowRouter.go('landing');
+        }, 1000);
       }
     });
   },
@@ -63,6 +70,14 @@ Template.leftSidebar.events({
 
     $(".side-nav-user-dropdown").toggleClass("hidden");
     $(".side-nav-user-show-dropdown").toggleClass("visible");
+  },
+  'blur .side-nav-user-show-dropdown': function (e) {
+    e.preventDefault();
+
+    Meteor.setTimeout(function(){
+      $(".side-nav-user-dropdown").toggleClass("hidden");
+      $(".side-nav-user-show-dropdown").toggleClass("visible");
+    }, 100);
   },
   'focus input': function(e) {
     Session.set('searching', true);

@@ -1,7 +1,9 @@
 $sidebar-width: 260px;
 $top: 60px;
 $note-info-width: 315px;
+$padding: 16px;
 
+$light-border: #E7E7E7;
 $light-text: white;
 $dark-text: black;
 $light-background: white;
@@ -13,6 +15,6 @@ $online: #38978D;
 $offline: #9f9f9f;
 $idle: lighten($primary, 15%);
 $white: #FFFFFF;
-
-$padding: 16px;
-$light-border: #E7E7E7;
+$grey-dark: #999;
+$grey-light: #eee;
+$text-color: #222;

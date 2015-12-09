@@ -72,16 +72,24 @@ Template.pointInput.events({
         height: 37
       });
 
+      var wordCount = value.split(' ').length;
       if (!Session.get("insert")) {
-        var wordCount = value.split(' ').length;
         Meteor.users.update(Meteor.userId(), {
           $inc: {
             'profile.stats.wordsDay': wordCount,
             'profile.stats.wordsTotal': wordCount,
             'profile.stats.points': 1
           }
-        })
-      }
+        });
+      };
+
+      if (currentNoteId()) {
+        Notes.update(currentNoteId(), {
+          $inc: {
+            'wordCount': wordCount,
+          }
+        });
+      };
 
       Session.set('insert', false);
       analytics.track("New point", {

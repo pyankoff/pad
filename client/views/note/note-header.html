@@ -8,12 +8,41 @@
       </a>
       <span class="room-title {{editingTitle}}">{{title}}</span>
       <input type="text" id="note-title-field" class="{{showEditingTitle}}" value="{{title}}" dir="auto">
-      <a href="#edit" class="edit-room-title">
-        <i class="fa fa-pencil" aria-label="Edit"></i>
-      </a>
+
+      {{#dropdownTrigger name="stats-dropdown" }}
+        <span class="label label-info">{{wordCount}}</span>
+      {{/dropdownTrigger}}
     </h2>
 
-    <a href="/search"><i class="fa fa-search"></i></a>
-    <i class="fa fa-plus"></i>
+    <a class="btn-search" href="/search"><i class="fa fa-search"></i></a>
+
+    {{#dropdownTrigger name="actions-dropdown" }}
+      <span class="btn-actions"><i class="fa fa-ellipsis-v"></i></span>
+    {{/dropdownTrigger}}
+
+
+    {{#dropdown name="stats-dropdown"}}
+      {{> statsDropdown}}
+    {{/dropdown}}
+
+    {{#dropdown name="actions-dropdown" align="right"}}
+    <ul class="actions-dropdown">
+      {{#if currentNote}}
+        <li><a href="#edit" class="edit-room-title">
+          <i class="fa fa-pencil" aria-label="Edit"></i>
+          Rename note
+        </a></li>
+        <li><a href="#delete" class="edit-room-title">
+          <i class="fa fa-times" aria-label="Edit"></i>
+          Delete note
+        </a></li>
+      {{/if}}
+      <div role="separator" class="divider"></div>
+      <li><a href="#new" class="edit-room-title">
+        <i class="fa fa-plus" aria-label="New"></i>
+        New note
+      </a></li>
+    </ul>
+    {{/dropdown}}
   </header>
 </template>

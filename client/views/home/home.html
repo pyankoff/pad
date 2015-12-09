@@ -1,14 +1,5 @@
 <template name="home">
-  <header class="note-header">
-    <i class="fa fa-bars visible-xs-block"></i>
-
-    <h2>
-      <span class="room-title {{editingTitle}}">home</span>
-    </h2>
-
-    <a href="/search"><i class="fa fa-search"></i></a>
-    <i class="fa fa-plus"></i>
-  </header>
+  {{> noteHeader home}}
 
   <div class="note-content">
     <ul class="note-content-scroll">

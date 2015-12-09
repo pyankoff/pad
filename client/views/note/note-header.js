@@ -1,6 +1,13 @@
 Template.noteHeader.helpers({
   title: function(){
-    return currentNote() && currentNote().title;
+    return this.title;
+  },
+  wordCount: function() {
+    if (currentNote()) {
+      return currentNote().wordCount;
+    } else {
+      return Meteor.user().profile && Meteor.user().profile.stats.wordsTotal;
+    }
   },
   editingTitle: function() {
 		return Session.get('editRoomTitle') ? 'hidden' : '';

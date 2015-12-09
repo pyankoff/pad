@@ -1,0 +1,22 @@
+<template name="statsDropdown">
+  <ul class="list-group stats-list">
+    {{#if currentNote}}
+      <li class="list-group-item">
+        Words in this note
+        <span class="badge">{{currentNote.wordCount}}</span>
+      </li>
+    {{/if}}
+    <li class="list-group-item">
+      Points written today
+      <span class="badge">{{stat.points}}</span>
+    </li>
+    <li class="list-group-item">
+      Words written today
+      <span class="badge">{{stat.wordsDay}}</span>
+    </li>
+    <li class="list-group-item">
+      Total words written
+      <span class="badge">{{stat.wordsTotal}}</span>
+    </li>
+  </ul>
+</template>

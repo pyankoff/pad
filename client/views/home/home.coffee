@@ -3,6 +3,10 @@ Template.home.helpers
     Points.findOne {noteId: Session.get('newNoteId')} if Session.get('newNoteId')
   newNote: ->
     Notes.findOne Session.get('newNoteId')
+  home: ->
+    {
+      title: 'home'
+    }
 
 Template.stats.helpers
   stat: ->
