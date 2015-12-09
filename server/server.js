@@ -9,7 +9,8 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = {}
   }
 
-  user.profile.favorites = [];
+  user.profile.currentPoints = [];
+  user.profile.favoriteNotes = [];
   user.profile.stats = {
     "wordsDay": 0,
     "wordsTotal": 0,

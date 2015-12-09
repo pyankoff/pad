@@ -6,7 +6,7 @@ Template.home.helpers
 
 Template.stats.helpers
   stat: ->
-    Meteor.user().profile?.stats
+    Meteor.user()?.profile?.stats
 
 Template.recentPoints.onCreated ->
   self = this
@@ -16,6 +16,7 @@ Template.recentPoints.onCreated ->
 Template.home.onCreated ->
   self = this
   @autorun ->
-    pointIds = Meteor.user().profile?.currentPoints
-    self.subscribe 'home', pointIds, () ->
-      scrollDown()
+    pointIds = Meteor.user()?.profile?.currentPoints
+    if pointIds
+      self.subscribe 'home', pointIds, () ->
+        scrollDown()

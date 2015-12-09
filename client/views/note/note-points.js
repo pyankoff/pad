@@ -6,7 +6,7 @@ Template.notePoints.helpers({
     } else {
       pointIds = Meteor.user().profile && Meteor.user().profile.currentPoints
     }
-    console.log(pointIds);
+    
     var points = Points.find({_id: {$in: pointIds}}).fetch();
     points = _.sortBy(points, function(doc) {
       return pointIds.indexOf(doc._id)

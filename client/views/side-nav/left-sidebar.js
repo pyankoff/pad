@@ -17,7 +17,7 @@ Template.leftSidebar.helpers({
 Template.favoriteNotes.helpers({
   notes: function () {
     if (Meteor.user() && Meteor.user().profile) {
-      return Notes.find({_id: {$in: Meteor.user().profile.favorites}});
+      return Notes.find({_id: {$in: Meteor.user().profile.favoriteNotes}});
     }
   },
   activeChannelClass: activeChannelClass
@@ -28,7 +28,7 @@ Template.recentNotes.helpers({
     if (Meteor.user() && Meteor.user().profile) {
       return Notes.find({$and: [
         {userId: Meteor.userId()},
-        {_id: {$not: {$in: Meteor.user().profile.favorites}}}]},
+        {_id: {$not: {$in: Meteor.user().profile.favoriteNotes}}}]},
               {sort: {updatedAt: -1}, limit: 10});
     }
   },
@@ -54,12 +54,12 @@ Template.leftSidebar.events({
   },
   'click .fa-star-o': function(e) {
     Meteor.users.update(Meteor.userId(), {
-      $addToSet: {'profile.favorites': this._id}
+      $addToSet: {'profile.favoriteNotes': this._id}
     });
   },
   'click .fa-star': function(e) {
     Meteor.users.update(Meteor.userId(), {
-      $pull: {'profile.favorites': this._id}
+      $pull: {'profile.favoriteNotes': this._id}
     });
   },
   'click li > a': function(e) {
@@ -102,7 +102,7 @@ Template.favoriteNotes.onCreated(function() {
   Session.set('searching', false);
   self.autorun(function () {
     if (Meteor.user()) {
-      self.subscribe('favoriteNotes', Meteor.user().profile.favorites);
+      self.subscribe('favoriteNotes', Meteor.user().profile.favoriteNotes);
     }
   });
 });
