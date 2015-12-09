@@ -201,11 +201,11 @@ pre code {
 }
 /* ======= Promo Section ======= */
 .promo {
-  background: #17baef;
+  background: $landing-background;
   color: #fff;
   display: table;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 80px);
   & > div.container {
     display: table-cell;
     vertical-align: middle;

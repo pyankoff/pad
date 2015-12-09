@@ -19,6 +19,7 @@
 	right: 0;
 	width: auto;
 	height: auto;
+	background-color: #fff;
 }
 
 @media all and(max-width: 767px) {
@@ -44,8 +45,9 @@
 				transform: translateX($sidebar-width);
 			}
 		}
-		.note-header h2 {
-			margin-left: 30px;
+		.note-header {
+			margin-left: 40px;
+			width: calc(100% - 40px);
 		}
 	}
 }

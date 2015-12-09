@@ -48,14 +48,15 @@
   }
   li {
     padding: 0 $padding;
-    i {
+    .fa-star, .fa-star-o {
       display: none;
       float: right;
       padding-top: 5px;
       cursor: pointer;
     }
     &:hover {
-      i {
+      background-color: transparentize(#fff, 0.9);
+      .fa-star, .fa-star-o {
         display: block;
         &:hover {
           color: white;
@@ -259,5 +260,12 @@
   .no-results {
     padding-left: $padding;
     padding-right: $padding;
+  }
+  .new-note-item {
+    margin-top: 10px;
+    margin-left: -$padding;
+    .fa-plus {
+      font-size: 0.9em;
+    }
   }
 }

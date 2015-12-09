@@ -19,10 +19,17 @@ Template.landingHeader.events({
     e.preventDefault();
     var target = e.target.hash;
 
-    $('body').scrollTo(target, 800, {offset: -70, 'axis':'y', easing:'easeOutQuad'});
-        //Collapse mobile menu after clicking
-    if ($('.navbar-collapse').hasClass('in')){
-      $('.navbar-collapse').removeClass('in').addClass('collapse');
+    if (FlowRouter.current().path === '/') {
+      $('body').scrollTo(target, 600, {offset: -70, 'axis':'y'});
+          //Collapse mobile menu after clicking
+      if ($('.navbar-collapse').hasClass('in')){
+        $('.navbar-collapse').removeClass('in').addClass('collapse');
+      }
+    } else {
+      FlowRouter.go('/');
     }
+  },
+  'click .nav-sign': function(e){
+    $('.nav-item').removeClass('active');
   }
 });

@@ -1,8 +1,8 @@
 <template name="search">
-    <header class="note-header">
+    {{#headerWrapper}}
       <i class="fa fa-search" style="float: left;"></i>
       {{> EasySearch.Input index=pointsIndex attributes=inputAttributes}}
-    </header>
+    {{/headerWrapper}}
 
     <div class="note-content">
       <ul class="note-content-scroll search-results">

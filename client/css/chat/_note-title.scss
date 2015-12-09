@@ -1,10 +1,13 @@
+.header-wrapper {
+  // border-bottom: 1px solid $light-border;
+}
+
 .note-header {
   position: absolute;
   display: flex;
   align-items: center;
   background-color: white;
-  padding: 0 10px 0 20px;
-  border-bottom: 1px solid $light-border;
+  padding: 0 10px 0 10px;
   z-index: 100;
   top: 0;
   left: 0;
@@ -91,7 +94,7 @@
   a {
     color: #444;
     margin-bottom: 5px;
-    &:hover {
+    &:hover, &:active, &:focus {
       text-decoration: none;
     }
   }

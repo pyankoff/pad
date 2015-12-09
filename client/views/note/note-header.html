@@ -1,7 +1,5 @@
 <template name="noteHeader">
-  <header class="note-header">
-    <i class="fa fa-bars visible-xs-block"></i>
-
+  {{#headerWrapper}}
     <h2>
       <a href="#favorite" class="toggle-favorite">
         <i class="{{favorite}}" aria-label=""></i>
@@ -32,17 +30,17 @@
           <i class="fa fa-pencil" aria-label="Edit"></i>
           Rename note
         </a></li>
-        <li><a href="#delete" class="edit-room-title">
+        <li><a href="#delete" class="delete-note">
           <i class="fa fa-times" aria-label="Edit"></i>
           Delete note
         </a></li>
+        <div role="separator" class="divider"></div>
       {{/if}}
-      <div role="separator" class="divider"></div>
-      <li><a href="#new" class="edit-room-title">
+      <li><a href="#new" class="new-note">
         <i class="fa fa-plus" aria-label="New"></i>
         New note
       </a></li>
     </ul>
     {{/dropdown}}
-  </header>
+  {{/headerWrapper}}
 </template>

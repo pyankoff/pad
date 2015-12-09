@@ -65,6 +65,12 @@ Template.leftSidebar.events({
   'click li > a': function(e) {
     menu.close();
   },
+  'click .new-note-item': function(e) {
+    var noteId = Notes.insert({
+      title: 'new note'
+    });
+    FlowRouter.go('note', {'note': noteId});
+  },
   'click .side-nav-user-show-dropdown': function (event) {
     event.preventDefault();
 

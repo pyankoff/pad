@@ -28,23 +28,34 @@ Template.noteHeader.events({
       Session.set('editRoomTitle', false);
     }
   },
-  'click .fa-plus': function(e) {
+  'click .new-note': function(e) {
+    e.preventDefault()
     var noteId = Notes.insert({
-      title: 'new note',
-      suggestKeywords: true
+      title: 'new note'
     });
     FlowRouter.go('note', {'note': noteId});
   },
-  'click .fa-bars': function(e) {
-    menu.toggle();
+  'click .delete-note': function(e) {
+    e.preventDefault()
+    Notes.remove({_id: this._id});
+    swal({
+      title: 'Note deleted',
+      text:  'Note deleted successfully',
+      type: 'success',
+      timer: 1000
+    });
+
+    FlowRouter.go('home');
   },
   'click .edit-room-title': function(e) {
 		e.preventDefault()
-		Session.set('editRoomTitle', !Session.get('editRoomTitle'));
-    if (Session.get('editRoomTitle')) {
-      Meteor.setTimeout(function() {
-        $('#room-title-field').focus().select()
-      }, 10);
-    }
+		Session.set('editRoomTitle', true);
+    Meteor.setTimeout(function() {
+      $('#note-title-field').focus().select()
+    }, 10);
+    Dropdowns.hide('actions-dropdown');
+  },
+  'blur #note-title-field': function(e) {
+    Session.set('editRoomTitle', false);
   }
 });
