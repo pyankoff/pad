@@ -19,3 +19,5 @@ Accounts.onCreateUser(function(options, user) {
 
   return user;
 });
+
+Kadira.connect('DHiTLAtSQorGFqDbw', '5f13c0f2-80a0-4e4f-bcbe-f9dcdfed5c71');

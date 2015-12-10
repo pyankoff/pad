@@ -3,9 +3,9 @@ var activeChannelClass = function () {
 }
 
 Template.leftSidebar.helpers({
-  notesIndex: function(){
-    return NotesIndex;
-  },
+  // notesIndex: function(){
+  //   return NotesIndex;
+  // },
   searching: function() {
     return Session.get('searching');
   },

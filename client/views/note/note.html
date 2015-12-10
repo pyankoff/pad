@@ -3,6 +3,11 @@
 
     <div class="note-content">
       <ul class="note-content-scroll">
+        {{#if morePoints}}
+            <div id="showMoreResults" style="margin-left: 25px;">
+                <span class="loading">Loading...</span>
+            </div>
+        {{/if}}
         {{> notePoints}}
       </ul>
     </div>

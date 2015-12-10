@@ -98,11 +98,11 @@ pre code {
   color: #fff;
   position: fixed;
   width: 100%;
+  z-index: 10;
 }
 #header.navbar-fixed-top,
 #header.navbar-app {
   background: #fff;
-  z-index: 9999;
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);

@@ -17,6 +17,7 @@ Template.landingHeader.onRendered(() => {
 Template.landingHeader.events({
   "click a.scrollto": function(e){
     e.preventDefault();
+    $('.navbar-collapse').collapse('hide');
     var target = e.target.hash;
 
     if (FlowRouter.current().path === '/') {
@@ -31,5 +32,6 @@ Template.landingHeader.events({
   },
   'click .nav-sign': function(e){
     $('.nav-item').removeClass('active');
+    $('.navbar-collapse').collapse('hide');
   }
 });

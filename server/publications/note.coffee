@@ -1,4 +1,4 @@
-Meteor.publishComposite 'note', (noteId) ->
+Meteor.publishComposite 'note', (noteId, limit) ->
 	find: ->
 		Notes.find {_id: noteId}
 	children: [
@@ -6,5 +6,6 @@ Meteor.publishComposite 'note', (noteId) ->
 			Points.find {$or:
 				[{_id: {$in: note.points}}
 				{noteId: noteId}]
-			}
+			},
+			{sort: {createdAt: -1}, limit: limit}
 	]

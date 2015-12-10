@@ -22,10 +22,8 @@ kadira:flow-router
 peerlibrary:blaze-components
 todda00:friendly-slugs
 arillo:flow-router-helpers
-seriousm:emoji-continued
 kevohagan:sweetalert
 fortawesome:fontawesome
-aldeed:autoform
 easy:search
 okgrow:analytics
 twbs:bootstrap-noglyph
@@ -37,9 +35,7 @@ useraccounts:bootstrap
 dburles:collection-helpers
 iframely:oembed
 matb33:collection-hooks
-qnub:emojione
 ogourment:settings
-tmeasday:presence
 standard-minifiers
 meteor-base
 mobile-experience
@@ -58,3 +54,5 @@ coffeescript
 ecmascript
 percolate:synced-cron
 lookback:dropdowns
+meteorhacks:kadira
+fastclick
