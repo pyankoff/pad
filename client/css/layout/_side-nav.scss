@@ -21,7 +21,7 @@
       display: table-cell;
       vertical-align: middle;
       .side-nav-title {
-        font-weight: 900;
+        font-weight: 100;
         color: white;
         font-size: 1.7em;
         padding-left: 15px;
@@ -151,95 +151,6 @@
       }
     }
 
-    &-dropdown {
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      background-color: $light-background;
-      color: $secondary;
-      position: absolute;
-      left: 0;
-      width: $sidebar-width;
-      bottom: $top;
-      background: #f3f3f3;
-      z-index: 2;
-      border-radius: .375rem;
-      border: solid 1px $light-background;
-      text-shadow: none;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: -8px;
-        left: 46px;
-        border-left: solid 8px transparent;
-        border-right: solid 8px transparent;
-      }
-
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: -5px;
-        right: $padding;
-        border-left: solid 5px transparent;
-        border-right: solid 5px transparent;
-        border-top: solid 5px $light-background;
-      }
-
-      a {
-        color: $secondary;
-        text-shadow: none;
-      }
-
-      .header-item {
-        position: relative;
-
-        hr {
-          position: absolute;
-          left: 0;
-          margin-top: 8px;
-          width: 100%;
-        }
-
-        &-content {
-          color: lighten($secondary, 20%);
-          font-size: 0.7rem;
-          z-index: 2;
-          padding-right: 8px;
-          background-color: #f3f3f3;
-          position: relative;
-        }
-
-      }
-
-      ul.menu-items {
-
-        li.menu-item {
-
-          &:hover {
-            background: #ddd;
-          }
-
-          &:active {
-            background: #aaa;
-          }
-
-          a {
-            color: $secondary;
-          }
-
-        }
-
-      }
-
-      ul li a {
-        color: $dark-text;
-        text-shadow: none;
-      }
-    }
-
   }
   .notes-container {
     margin-top: $top;
@@ -269,5 +180,21 @@
     .fa-plus {
       font-size: 0.9em;
     }
+  }
+
+  .menu-item {
+
+    &:hover {
+      background: #ddd;
+    }
+
+    &:active {
+      background: #aaa;
+    }
+
+    & > a {
+      color: $secondary;
+    }
+
   }
 }

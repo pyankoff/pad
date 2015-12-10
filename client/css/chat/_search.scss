@@ -28,5 +28,10 @@
 }
 
 .search-results .message-body {
-  cursor: pointer;
+  // cursor: pointer;
+}
+
+.load-more {
+  margin-top: $padding;
+  width: 100%;
 }

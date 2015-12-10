@@ -6,7 +6,7 @@ Template.noteHeader.helpers({
     if (currentNote()) {
       return currentNote().wordCount;
     } else {
-      return Meteor.user() && Meteor.user().profile && Meteor.user().profile.stats.wordsTotal;
+      return Meteor.user() && Meteor.user().profile && Meteor.user().profile.stats.wordsDay;
     }
   },
   editingTitle: function() {

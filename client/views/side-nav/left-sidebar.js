@@ -71,20 +71,6 @@ Template.leftSidebar.events({
     });
     FlowRouter.go('note', {'note': noteId});
   },
-  'click .side-nav-user-show-dropdown': function (event) {
-    event.preventDefault();
-
-    $(".side-nav-user-dropdown").toggleClass("hidden");
-    $(".side-nav-user-show-dropdown").toggleClass("visible");
-  },
-  'blur .side-nav-user-show-dropdown': function (e) {
-    e.preventDefault();
-
-    Meteor.setTimeout(function(){
-      $(".side-nav-user-dropdown").addClass("hidden");
-      $(".side-nav-user-show-dropdown").removeClass("visible");
-    }, 100);
-  },
   'focus input': function(e) {
     Session.set('searching', true);
   }

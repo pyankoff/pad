@@ -206,9 +206,20 @@ pre code {
   display: table;
   width: 100%;
   height: calc(100vh - 80px);
-  & > div.container {
+  & > div {
     display: table-cell;
     vertical-align: middle;
+    img {
+      margin-bottom: $padding;
+    }
+  }
+  .quick-sign-up {
+    .at-title {
+      display: none;
+    }
+    .at-sign-in-link {
+      margin-top: 0px;
+    }
   }
 }
 .promo .title {
@@ -217,14 +228,14 @@ pre code {
   margin-top: 0;
 }
 .promo .title .highlight,
-.logo .logo-title .highlight {
+.logo .logo-title .highlight,
+.side-nav-title .highlight {
   color: $accent;
 }
 .promo .intro {
   font-size: 28px;
   max-width: 680px;
   margin: 0 auto;
-  margin-bottom: 30px;
 }
 .promo .btns .btn {
   margin-right: 15px;
@@ -632,6 +643,10 @@ pre code {
   .at-form {
     padding-top: 0;
   }
+}
+
+.at-title {
+  color: white;
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

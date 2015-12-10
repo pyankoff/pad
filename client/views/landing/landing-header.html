@@ -1,6 +1,12 @@
 <template name="landingHeader">
 	<header id="header" class="header">
 		<div class="container">
+			<h1 class="logo pull-left">
+				<a href="/">
+					<span class="logo-title">encyclo<span class="highlight">Pad</span></span>
+				</a>
+			</h1>
+
 			<nav id="main-nav" class="main-nav navbar-right" role="navigation">
 				<div class="navbar-header">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
@@ -12,8 +18,7 @@
 				</div><!--//navbar-header-->
 				<div class="navbar-collapse collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="nav-item"><a class="scrollto" href="#about">About</a></li>
-						<li class="nav-item"><a class="scrollto" href="#contact">Contact</a></li>
+						<li class="nav-item"><a href="mailto:encyclopad.com@gmail.com" class=" contact" target="_blank">Contact</a></li>
 						<li class="nav-item"><a href="{{pathFor 'sign-in'}}" class=" nav-sign">Sign In</a></li>
 						<li class="nav-item nav-sign">
               <a href="{{pathFor 'sign-up'}}" class="btn btn-signup nav-sign">Sign Up</a>

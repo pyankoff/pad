@@ -2,9 +2,7 @@
   <aside class="side-nav">
     <header class="header">
       <a href="{{pathFor 'home'}}">
-        <span class="side-nav-title">
-            Encyclopad
-        </span>
+        <span class="side-nav-title">encyclo<span class="highlight">Pad</span></span>
       </a>
     </header>
 
@@ -35,15 +33,20 @@
       {{> recentNotes}}
     </div>
 
-    <div class="side-nav-user-dropdown hidden">
-      <ul class="menu-items">
+    {{#dropdown name="user-dropdown" direction="n"}}
+      <ul>
+        <li class="menu-item"><a href="mailto:encyclopad.com@gmail.com" class="support" target="_blank">Support</a></li>
         <li class="menu-item"><a href="#" class="sign-out">Sign out</a></li>
       </ul>
-    </div>
-    <div class="side-nav-user">
-      <a href="#">{{currentUser.username}}</a>
-      <button type="button" class="side-nav-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
-    </div>
+
+    {{/dropdown}}
+
+    {{#dropdownTrigger name="user-dropdown"}}
+      <div class="side-nav-user">
+        <a href="#">{{currentUser.username}}</a>
+        <button type="button" class="side-nav-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
+      </div>
+    {{/dropdownTrigger}}
   </aside>
 </template>
 

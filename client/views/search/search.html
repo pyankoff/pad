@@ -11,7 +11,7 @@
         {{/EasySearch.Each}}
       </ul>
 
-      {{> EasySearch.LoadMore index=pointsIndex}}
+      {{> EasySearch.LoadMore index=pointsIndex attributes=loadMoreAttr}}
 
       {{#EasySearch.IfNoResults index=pointsIndex}}
         <div class="no-results">No results found!</div>

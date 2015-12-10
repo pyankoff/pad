@@ -3,16 +3,10 @@
 
   <div class="note-content">
     <ul class="note-content-scroll">
-      <div class="inspiration">
-        <p>
-          {{#markdown}}Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use.{{/markdown}}</p>
-        <p><strong>- Steve Jobs</strong></p>
-      </div>
-
       {{> stats}}
 
       <div class="inspiration">
-        <p>Just write your thoughts as messages. Few dashes in the beginning (like that '--') create division and new note.</p>
+        <p>Just write your thoughts as messages. Few dashes in the beginning (like that '--') create division and a new note.</p>
       </div>
       {{> point section}}
       {{> notePoints}}
@@ -28,17 +22,17 @@
 <template name="stats">
   <div class="panel panel-info stat-panel">
     <div class="panel-heading">
-      <h3 class="panel-title text-center">Your thinking statistics</h3>
+      <h3 class="panel-title text-center">Your statistics</h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-4">
-          Points written today
-          <h1>{{stat.points}}</h1>
-        </div>
-        <div class="col-xs-4">
           Words written today
           <h1>{{stat.wordsDay}}</h1>
+        </div>
+        <div class="col-xs-4">
+          Total points written
+          <h1>{{stat.points}}</h1>
         </div>
         <div class="col-xs-4">
           Total words written
